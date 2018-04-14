@@ -2,14 +2,14 @@ from flask import request, render_template
 from leetpass.strengthen import Strengthen
 
 from mnemopass.mnemonic import MnemonicGenerator
-from webview import app
+from webview import mnemopassapp
 from webview.image import load_image
 
 mnemonic_generator = MnemonicGenerator()
 strengthen = Strengthen()
 
 
-@app.route('/', methods=['GET', 'POST'])
+@mnemopassapp.route('/', methods=['GET', 'POST'])
 def index():
     content = dict()
     if request.method == 'POST':
