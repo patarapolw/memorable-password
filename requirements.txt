@@ -8,7 +8,6 @@ gunicorn==19.7.1
 idna==2.6
 itsdangerous==0.24
 Jinja2==2.10
--e git+https://github.com/patarapolw/mnemopass.git@1acf0039e6bed161668afb210891b5016d52b8b0#egg=leetpass
 MarkupSafe==1.0
 passwordstrength==0.1.1
 PyYAML==3.12
