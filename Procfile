@@ -1,1 +1,1 @@
-web: gunicorn app:mnemopassapp --log-file=-
+web: gunicorn app:mempass --log-file=-

@@ -1,0 +1,30 @@
+============================= test session starts ==============================
+platform darwin -- Python 3.6.4, pytest-3.5.0, py-1.5.3, pluggy-0.6.0
+rootdir: /Users/patarapolw/PycharmProjects/DictPassword, inifile: pytest.ini
+plugins: timeout-1.2.1, repeat-0.4.1, doctestplus-0.1.2
+timeout: 20.0s method: signal
+collected 17 items
+
+memorable_password/mnemonic.py ...                                             
+tests/test_password.py .prof3ssor5prOb&6leex#austed
+professors
+probable
+exhausted
+.5917
+literature
+freed
+the
+contemporary
+.                                                     
+tests/test_sentence.py ['set-to', 'multihull', 'goldenest', 'second-feet']
+.['cherubimic', 'kryptocyanine', 'metafluidal', 'well-built', 'thyrorroria']
+.['Alvah', 'fan-nerved', 'NYSE', 'retorting', 'tirrit', 'histological']
+.........
+
+=========================== slowest 5 test durations ===========================
+3.88s call     tests/test_sentence.py::test_from_keyword[4]
+3.53s call     tests/test_password.py::test_refresh
+0.06s call     tests/test_password.py::test_new_password
+0.02s call     tests/test_sentence.py::test_from_initials[6]
+0.01s call     tests/test_sentence.py::test_from_keyword[5]
+========================== 17 passed in 17.52 seconds ==========================

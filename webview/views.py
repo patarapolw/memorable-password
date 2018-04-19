@@ -1,26 +1,39 @@
 from flask import request, render_template
-from leetpass.strengthen import Strengthen
 
-from mnemopass.mnemonic import MnemonicGenerator
-from webview import mnemopassapp
+from memorable_password import PasswordGenerator, ToSentence
+from webview import mempass
 from webview.image import load_image
 
-mnemonic_generator = MnemonicGenerator()
-strengthen = Strengthen()
+pass_gen = PasswordGenerator()
+to_sentence = ToSentence()
 
 
-@mnemopassapp.route('/', methods=['GET', 'POST'])
+@mempass.route('/', methods=['GET', 'POST'])
 def index():
-    content = dict()
     if request.method == 'POST':
         data = request.form
-        if data['generate'] == 'mnemonic':
-            content.update(mnemonic_generator.memorize_pin(data['password']))
+        if data['generate'] == 'sentence':
+            if 'pin' in data.keys():
+                return to_sentence.from_pin(data['pin'])
+            elif 'initial' in data.keys():
+                return to_sentence.from_initials(data['initial'])
+            elif 'keywords' in data.keys():
+                return to_sentence.from_keywords(data['keywords'].split(' '))
         elif data['generate'] == 'password':
-            content.update(mnemonic_generator.generate_pin(int(data['number_of_keywords'])))
-            content['leetspeak'] = strengthen.strengthen(''.join(content['keywords']), target=150)
-        content.update(data)
-        content['image'] = load_image(' '.join(content['keywords']))
-        content['number_of_keywords'] = len(content['keywords'])
+            if 'type' in data.keys():
+                if data['type'] == 'password':
+                    return pass_gen.new_password()
+                elif data['type'] == 'pin':
+                    return pass_gen.new_pin()
 
+    content = pass_gen.new_password()
     return render_template('index.html', content=content)
+
+
+@mempass.route('/img', methods=['POST'])
+def image():
+    if request.method == 'POST':
+        data = request.form
+        return load_image(data['sentence'])
+
+    return ''

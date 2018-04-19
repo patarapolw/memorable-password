@@ -1,4 +1,4 @@
-from webview import mnemopassapp
+from webview import mempass
 
 if __name__ == '__main__':
-    mnemopassapp.run(debug=True)
+    mempass.run(debug=True)
