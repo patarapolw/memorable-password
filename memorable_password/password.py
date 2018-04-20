@@ -6,7 +6,7 @@ from randomsentence import SentenceTool, WordTool, Brown
 from time import time
 
 from memorable_password.mnemonic import Mnemonic
-from memorable_password.policy import Policy
+from memorable_password.policy import Conformize
 
 __doctest_skip__ = ['PasswordGenerator.refresh', 'PasswordGenerator.new_password', 'PasswordGenerator.new_pin']
 
@@ -21,7 +21,7 @@ class PasswordGenerator:
         self.sentence_tool = SentenceTool()
         self.word_tool = WordTool()
         self.brown = Brown()
-        self.policy = Policy()
+        self.conformizer = Conformize()
         self.mnemonic = Mnemonic()
 
         self.tokens = None
@@ -70,7 +70,7 @@ class PasswordGenerator:
         start = time()
         while time() - start < timeout:
             keywords = [keyword for keyword, _ in current_keywords_with_rating if self.word_tool.is_word(keyword)]
-            password = self.policy.conformize(''.join(keywords))
+            password = self.conformizer.conformize(''.join(keywords))
             if password is None:
                 password = ''
             if min_length <= len(password) <= max_length:

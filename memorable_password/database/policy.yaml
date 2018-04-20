@@ -1,8 +1,4 @@
 policy:
   both_upper_and_lower: true
-  includes_digit: true
-  allowed_characters:
-    - 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    - '0123456789'
-    - "!\"#$%&'()*+,-./:;<=>?@[\\]^_`{|}~"
-  includes: [ '@', '#', '$']
+  digit_count: 1
+  punctuation_count: 1
