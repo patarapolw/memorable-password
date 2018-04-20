@@ -1,31 +1,46 @@
 $(document).ready(function(){
-    $('#keywords').text(content.keywords.join(' '));
-    $('#password').val(content.password);
-
-    $('.type[value=' + content.type + ']').prop("checked", true);
-
-    viewPassword($('.type:checked').val());
-
-    $('img').attr('src', content.image);
-
-    $('.type').on('click', function(){
-        viewPassword($(this).val());
-    });
-
-    function viewPassword(passwordType){
-        switch(passwordType){
-            case 'pin':
-                if(content.generate == 'password'){
-                    $('#password').val(content.PIN);
-                } else {
-                    $('#password').val(content.password);
-                }
-                break;
-            case 'simple':
-                $('#password').val(content.keywords.join(''));
-                break;
-            case 'leetspeak':
-                $('#password').val(content.leetspeak);
+    $('#sentence-display').html(sentence);
+    $('#password-display').html(password);
+    $('input[name="generate"]').click(function(){
+        if($(this).val() === 'sentence'){
+            $('#sentence-header').removeClass('disabled');
+            $('select[name="from"]').attr('disabled', false);
+            $('#material').attr('disabled', false);
+        } else {
+            $('#sentence-header').addClass('disabled');
+            $('select[name="from"]').attr('disabled', true);
+            $('#material').attr('disabled', true);
         }
-    }
+    });
+    $('select[name="from"]').click(function(){
+        var value = $(this).val()
+        var $material = $('#material');
+        if(value === 'random'){
+            $material.attr('placeholder', '').attr('disabled', true);
+        } else {
+            $material.attr('disabled', false);
+            if(value === 'keywords'){
+                $material.attr('placeholder', 'Please input your keywords, separated by comma.');
+            } else if(value === 'initials'){
+                $material.attr('placeholder', 'Please input your initials.');
+            } else {
+                $material.attr('placeholder', 'Please input your PIN.');
+            }
+        }
+    });
+    $('input[name="type"]').click(function(){
+        if($(this).val() === 'password'){
+            console.log('type-password selected');
+        } else {
+            console.log('type-pin selected');
+        }
+    });
+    $('#password-generator').submit(function(e){
+        e.preventDefault();
+        $.post('/', $(this).serialize())
+            .done(function(data){
+            $('#password-display').html(data.password);
+            $('#sentence-display').html(data.sentence);
+        })
+    })
 });

@@ -51,7 +51,7 @@ class PasswordGenerator:
         raise TimeoutError
 
     def new_password(self, min_length=20, max_length=30, timeout=20,
-                    count_common=4, min_common=1000, refresh_timeout=3):
+                     count_common=4, min_common=1000, refresh_timeout=3):
         """
         Return a suggested password
         :param int min_length: minimum password length

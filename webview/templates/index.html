@@ -5,48 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Password generator and memorizer</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" type="text/css" href=" {{ url_for('static', filename='main.css') }}">
+    <style>
+        .display {
+            min-height: 1.5em;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <form action="/" method="post">
-            <fieldset>
+        <form id="password-generator" action="/" method="post">
+            <div>
+                <div class="row mt-3 header"><h5>Password:</h5></div>
                 <div class="row">
-                    <div>Number of keywords:</div>
-                    <input type="number" name="number_of_keywords" id="number_of_keywords"
-                        min="1" max="6" value="4" required/>
+                    <div id="password-display" class="display"></div>
                 </div>
+            </div>
+            <div>
+                <div class="row mt-3 header"><h5>Sentence:</h5></div>
                 <div class="row">
-                    <div>Keywords:</div>
-                    <div id="keywords"></div>
+                    <div id="sentence-display" class="display"></div>
                 </div>
+            </div>
+            <div>
+                <div class="row mt-3 header"><h5>Generate:</h5></div>
                 <div class="row">
-                    <div>Password:</div>
-                    <input type="text" name="password" id="password" />
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                            <input type="radio" name="generate" value="sentence" id="gen-sentence" autocomplete="off" checked>
+                            Sentence
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="generate" value="password" id="gen-password" autocomplete="off">
+                            Password
+                        </label>
+                    </div>
                 </div>
-                <div class="col">
-                    <div>Password type:</div>
-                    <input type="radio" class="type" name="type" value="simple" checked>Simple
-                    <input type="radio" class="type" name="type" value="leetspeak">Leetspeak
-                    <input type="radio" class="type" name="type" value="pin">PIN
-                </div>
+            </div>
+            <div id="sentence-from">
+                <div class="row mt-3 header" id="sentence-header"><h5>From:</h5></div>
                 <div class="row">
-                    <button type="submit" name="generate" value="password" onkeypress="return false;">
-                        Generate Password</button>
-                    <button type="submit" name="generate" value="mnemonic">Generate Mnemonic</button>
-                    <button type="reset">Reset</button>
+                    <div class="input-group mb-3">
+                        <select class="custom-select col-sm-2" id="from-select" name="from">
+                            <option value="random" selected>Random</option>
+                            <option value="keywords">Keywords</option>
+                            <option value="initials">Initials</option>
+                            <option value="pin">PIN</option>
+                          </select>
+                      <input type="text" class="form-control col-auto" aria-label="Text input with dropdown button"
+                             placeholder="" disabled id="material">
+                    </div>
                 </div>
-                <div class="media">
-                    <img src="" id="image" width="400">
+            </div>
+            <div id="password-type">
+                <div class="row mt-3 header"><h5>Password type:</h5></div>
+                <div class="row">
+                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                    <label class="btn btn-secondary active">
+                        <input type="radio" name="type" value="password" id="type-password" autocomplete="off" checked>
+                        Password
+                    </label>
+                    <label class="btn btn-secondary">
+                        <input type="radio" name="type" value="pin" id="type-pin" autocomplete="off">
+                        PIN
+                    </label>
                 </div>
-            </fieldset>
+            </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Generate</button>
+            </div>
         </form>
     </div>
-    <script>var content = {{ content|tojson }}</script>
+    <script>var password = "{{ password }}";</script>
+    <script>var sentence = "{{ sentence }}";</script>
     <script src="{{ url_for('static', filename='renderer.js') }}"></script>
 </body>
 </html>
