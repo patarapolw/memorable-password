@@ -3,10 +3,10 @@ Generate a new password/PIN with associated sentence.
 """
 
 from randomsentence import SentenceTool, WordTool, Brown
-from leetpass.strengthen import Strengthen
 from time import time
 
 from memorable_password.mnemonic import Mnemonic
+from memorable_password.policy import Policy
 
 __doctest_skip__ = ['PasswordGenerator.refresh', 'PasswordGenerator.new_password', 'PasswordGenerator.new_pin']
 
@@ -21,7 +21,7 @@ class PasswordGenerator:
         self.sentence_tool = SentenceTool()
         self.word_tool = WordTool()
         self.brown = Brown()
-        self.strengthener = Strengthen()
+        self.policy = Policy()
         self.mnemonic = Mnemonic()
 
         self.tokens = None
@@ -70,9 +70,8 @@ class PasswordGenerator:
         start = time()
         while time() - start < timeout:
             keywords = [keyword for keyword, _ in current_keywords_with_rating if self.word_tool.is_word(keyword)]
-            try:
-                password = self.strengthener.strengthen(''.join(keywords), target=100)
-            except TimeoutError:
+            password = self.policy.conformize(''.join(keywords))
+            if password is None:
                 password = ''
             if min_length <= len(password) <= max_length:
                 return password, list(self.overlap_keywords(keywords, self.tokens))

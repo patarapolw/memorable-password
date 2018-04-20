@@ -1,6 +1,3 @@
-from time import time
-import re
-import string
 from randomsentence.keyword import KeywordParse
 
 from memorable_password.mnemonic import Mnemonic

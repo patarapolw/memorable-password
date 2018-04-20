@@ -1,12 +1,11 @@
-import os
 import yaml
 
-from memorable_password.dir import ROOT
+from memorable_password.dir import database_path
 
 
 class Mnemonic:
     def __init__(self):
-        with open(os.path.join(ROOT, 'mnemonic.yaml')) as f:
+        with open(database_path('mnemonic.yaml')) as f:
             self.mnemonic = yaml.safe_load(f)
 
     def starters(self, system):
