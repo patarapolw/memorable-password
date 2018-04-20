@@ -4,6 +4,8 @@ Generate a new password/PIN with associated sentence.
 
 from randomsentence import SentenceTool, WordTool, Brown
 from time import time
+import string
+import re
 
 from memorable_password.mnemonic import Mnemonic
 from memorable_password.policy import Conformize
@@ -65,7 +67,8 @@ class PasswordGenerator:
         start = time()
         while time() - start < timeout:
             keywords = [keyword for keyword, _ in current_keywords_with_rating if self.word_tool.is_word(keyword)]
-            password = self.conformizer.conformize(''.join(keywords))
+            password = self.conformizer.conformize(
+                re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
             if password is None:
                 password = ''
             if min_length <= len(password) <= max_length:

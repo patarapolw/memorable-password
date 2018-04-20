@@ -1,5 +1,8 @@
 from flask import request, render_template, Markup, jsonify
+
 from randomsentence import SentenceTool
+import re
+import string
 
 from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemonic
 from webview import mempass
@@ -16,7 +19,6 @@ mnemonic = Mnemonic()
 def index():
     if request.method == 'POST':
         data = request.form
-        print(data)
         if data['from'] == 'random':
             if data['type'] == 'password':
                 tagged_password = pass_gen.new_password()
@@ -32,7 +34,8 @@ def index():
             keywords = [keyword.strip() for keyword in data['material'].split(',')]
             tagged_sentence = to_sentence.from_keywords(keywords)
             if data['type'] == 'password':
-                password = conformizer.conformize(''.join(keywords))
+                password = conformizer.conformize(
+                    re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
             else:
                 password = ''.join([mnemonic.word_to_key('major_system', keyword.lower()) for keyword in keywords])
         elif data['from'] == 'pin':
@@ -45,7 +48,9 @@ def index():
             initials = data['material']
             tagged_sentence = to_sentence.from_initials(initials)
             if data['type'] == 'password':
-                password = conformizer.conformize(''.join([token for token, overlap in tagged_sentence if overlap]))
+                keywords = [token for token, overlap in tagged_sentence if overlap]
+                password = conformizer.conformize(
+                    re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
             else:
                 password = ''.join([mnemonic.word_to_key('major_system', char.lower()) for char in initials])
 

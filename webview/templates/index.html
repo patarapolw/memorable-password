@@ -19,77 +19,85 @@
 </head>
 <body>
     <div class="container">
-        <form id="password-generator" action="/" method="post">
-            <div>
-                <div class="row mt-3 header"><h5>Password:</h5></div>
-                <div class="row">
-                    <div class="loading-container">
-                        <div class="loading">
-                            <!-- We make this div spin -->
-                            <div class="spinner">
-                                <!-- Mask of the quarter of circle -->
-                                <div class="mask">
-                                    <!-- Inner masked circle -->
-                                    <div class="maskedCircle"></div>
+        <div class="col">
+            <form id="password-generator" action="/" method="post">
+                <div>
+                    <div class="row mt-3 header"><h5>Password:</h5></div>
+                    <div class="row">
+                        <div class="loading-container">
+                            <div class="loading">
+                                <!-- We make this div spin -->
+                                <div class="spinner">
+                                    <!-- Mask of the quarter of circle -->
+                                    <div class="mask">
+                                        <!-- Inner masked circle -->
+                                        <div class="maskedCircle"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        <div id="password-display" class="display password"></div>
                     </div>
-                    <div id="password-display" class="display password"></div>
                 </div>
-            </div>
-            <div>
-                <div class="row mt-3 header"><h5>Sentence:</h5></div>
-                <div class="row">
-                    <div class="loading-container">
-                        <div class="loading">
-                            <!-- We make this div spin -->
-                            <div class="spinner">
-                                <!-- Mask of the quarter of circle -->
-                                <div class="mask">
-                                    <!-- Inner masked circle -->
-                                    <div class="maskedCircle"></div>
+                <div>
+                    <div class="row mt-3 header"><h5>Sentence:</h5></div>
+                    <div class="row">
+                        <div class="loading-container">
+                            <div class="loading">
+                                <!-- We make this div spin -->
+                                <div class="spinner">
+                                    <!-- Mask of the quarter of circle -->
+                                    <div class="mask">
+                                        <!-- Inner masked circle -->
+                                        <div class="maskedCircle"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div id="sentence-display" class="display"></div>
-                </div>
-            </div>
-            <div>
-                <div class="row mt-3 header" id="from-header"><h5>Generate from:</h5></div>
-                <div class="row">
-                    <div class="input-group">
-                        <select class="custom-select col-sm-2" id="from-select" name="from">
-                            <option value="random" selected>Random</option>
-                            <option value="keywords">Keywords</option>
-                            <option value="initials">Initials</option>
-                            <option value="pin">PIN</option>
-                          </select>
-                      <input type="text" class="form-control col-auto" aria-label="Text input with dropdown button"
-                             placeholder="" disabled id="material" name="material">
+                        <div id="sentence-display" class="display"></div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <div class="row mt-3 header"><h5>Password type:</h5></div>
-                <div class="row">
-                <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                    <label class="btn btn-secondary active">
-                        <input type="radio" name="type" value="password" id="type-password" autocomplete="off" checked>
-                        Password
-                    </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="type" value="pin" id="type-pin" autocomplete="off">
-                        PIN
-                    </label>
+                <div>
+                    <div class="row mt-3 header" id="from-header"><h5>From:</h5></div>
+                    <div class="row">
+                        <div class="input-group">
+                            <select class="custom-select col-sm-2" id="from-select" name="from">
+                                <option value="random" selected>Random</option>
+                                <option value="keywords">Keywords</option>
+                                <option value="initials">Initials</option>
+                                <option value="pin">PIN</option>
+                              </select>
+                          <input type="text" class="form-control col-auto" aria-label="Text input with dropdown button"
+                                 placeholder="" disabled id="material" name="material">
+                        </div>
+                    </div>
                 </div>
-            </div>
-            </div>
-            <div class="row">
-                <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Generate</button>
-            </div>
-        </form>
+                <div>
+                    <div class="row mt-3 header"><h5>Password type:</h5></div>
+                    <div class="row">
+                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                        <label class="btn btn-secondary active">
+                            <input type="radio" name="type" value="password" id="type-password" autocomplete="off" checked>
+                            Password
+                        </label>
+                        <label class="btn btn-secondary">
+                            <input type="radio" name="type" value="pin" id="type-pin" autocomplete="off">
+                            PIN
+                        </label>
+                    </div>
+                </div>
+                </div>
+                <div class="row">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block mt-3">Generate</button>
+                </div>
+            </form>
+        </div>
+        <div class="col mt-3">
+            <h6>Note:</h6>
+            PIN memorization uses
+            <a href="https://en.wikipedia.org/wiki/Mnemonic_major_system">Mnemoic Major system</a>:<br/>
+            <pre>0: s, z, x; 1: t, th; 2: n; 3: m; 4: r; 5: l; 6: d; 7: c, k, g, q; 8: b, h, v, w; 9: p, f</pre>
+        </div>
     </div>
     <script>var password = "{{ password }}";</script>
     <script>var sentence = "{{ sentence }}";</script>
