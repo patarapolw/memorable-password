@@ -1,17 +1,6 @@
 $(document).ready(function(){
     $('#sentence-display').html(sentence);
     $('#password-display').html(password);
-    $('input[name="generate"]').click(function(){
-        if($(this).val() === 'sentence'){
-            $('#sentence-header').removeClass('disabled');
-            $('select[name="from"]').attr('disabled', false);
-            $('#material').attr('disabled', false);
-        } else {
-            $('#sentence-header').addClass('disabled');
-            $('select[name="from"]').attr('disabled', true);
-            $('#material').attr('disabled', true);
-        }
-    });
     $('select[name="from"]').click(function(){
         var value = $(this).val()
         var $material = $('#material');
@@ -42,5 +31,15 @@ $(document).ready(function(){
             $('#password-display').html(data.password);
             $('#sentence-display').html(data.sentence);
         })
+    })
+
+    $(document).ajaxSend(function( event, xhr, settings ){
+        if ( settings.url === "/" ){
+            $('.loading-container').show();
+        }
+    }).ajaxComplete(function( event, xhr, settings ){
+        if ( settings.url === "/" ){
+            $('.loading-container').hide();
+        }
     })
 });

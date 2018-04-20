@@ -13,11 +13,6 @@ __doctest_skip__ = ['PasswordGenerator.refresh', 'PasswordGenerator.new_password
 
 class PasswordGenerator:
     def __init__(self):
-        """
-        ToPassword.new_keywords and ToPassword.new_sentence_with_rating(count=4) on __init__
-        :param str keyword: a single keyword as defined in ngram.Oanc
-        :param str query: the string to pass to OANC's ngram
-        """
         self.sentence_tool = SentenceTool()
         self.word_tool = WordTool()
         self.brown = Brown()
@@ -84,6 +79,7 @@ class PasswordGenerator:
                 current_keywords_with_rating.remove(min_rating_pair)
 
         return None
+
 
     @staticmethod
     def overlap_keywords(keywords, tokens):

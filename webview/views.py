@@ -1,48 +1,65 @@
 from flask import request, render_template, Markup, jsonify
 from randomsentence import SentenceTool
 
-from memorable_password import PasswordGenerator, ToSentence
+from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemonic
 from webview import mempass
 from webview.image import load_image
 
 pass_gen = PasswordGenerator()
 to_sentence = ToSentence()
 sentence_tool = SentenceTool()
+conformizer = Conformize()
+mnemonic = Mnemonic()
 
 
 @mempass.route('/', methods=['GET', 'POST'])
 def index():
-    password = ''
-    tagged_token = []
-
     if request.method == 'POST':
         data = request.form
-        if data['generate'] == 'sentence':
-            if data['from'] == 'pin':
-                password, tagged_token = to_sentence.from_pin(data['material'])
-            elif data['from'] == 'initials':
-                password, tagged_token = to_sentence.from_initials(data['material'])
-            elif data['from'] == 'keywords':
-                password, tagged_token = to_sentence.from_keywords(
-                    [keyword.strip() for keyword in data['material'].split(',')])
-            else:
-                if data['type'] == 'password':
-                    password, tagged_token = pass_gen.new_password()
-                else:
-                    password, tagged_token = pass_gen.new_pin()
-        elif data['generate'] == 'password':
+        print(data)
+        if data['from'] == 'random':
             if data['type'] == 'password':
-                password, tagged_token = pass_gen.new_password()
+                tagged_password = pass_gen.new_password()
             else:
-                password, tagged_token = pass_gen.new_pin()
+                tagged_password = pass_gen.new_pin()
+
+            if tagged_password is not None:
+                password, tagged_sentence = tagged_password
+            else:
+                password = tagged_sentence = ''
+
+        elif data['from'] == 'keywords':
+            keywords = [keyword.strip() for keyword in data['material'].split(',')]
+            tagged_sentence = to_sentence.from_keywords(keywords)
+            if data['type'] == 'password':
+                password = conformizer.conformize(''.join(keywords))
+            else:
+                password = ''.join([mnemonic.word_to_key('major_system', keyword.lower()) for keyword in keywords])
+        elif data['from'] == 'pin':
+            tagged_sentence = to_sentence.from_pin(data['material'])
+            if data['type'] == 'password':
+                password = conformizer.conformize(''.join([token for token, overlap in tagged_sentence if overlap]))
+            else:
+                password = data['material']
+        else:  # from 'initials'
+            initials = data['material']
+            tagged_sentence = to_sentence.from_initials(initials)
+            if data['type'] == 'password':
+                password = conformizer.conformize(''.join([token for token, overlap in tagged_sentence if overlap]))
+            else:
+                password = ''.join([mnemonic.word_to_key('major_system', char.lower()) for char in initials])
+
         return jsonify({
             'password': password,
-            'sentence': render_tokens(tagged_token)
+            'sentence': render_tokens(tagged_sentence)
         })
     else:
-        password, tagged_token = pass_gen.new_password()
+        tagged_password = pass_gen.new_password()
+        if tagged_password is None:
+            tagged_password = ('', '')
 
-    return render_template('index.html', password=password, sentence=Markup(render_tokens(tagged_token)))
+    return render_template('index.html',
+                           password=tagged_password[0], sentence=Markup(render_tokens(tagged_password[1])))
 
 
 @mempass.route('/img', methods=['POST'])
