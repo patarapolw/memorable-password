@@ -4,14 +4,11 @@ from randomsentence import SentenceTool
 import re
 import string
 
-from rq import Queue
-from worker import conn
+from threading import Thread
 
 from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemonic
 from webview import mempass
 from webview.image import load_image
-
-q = Queue(connection=conn)
 
 sentence_tool = SentenceTool()
 pass_gen = PasswordGenerator()
@@ -19,7 +16,7 @@ to_sentence = ToSentence()
 conformizer = Conformize()
 mnemonic = Mnemonic()
 
-q.enqueue(pass_gen.init_brown, True)
+Thread(target=pass_gen.init_brown, args=(True,))
 
 
 @mempass.route('/', methods=['GET', 'POST'])
