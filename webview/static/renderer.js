@@ -1,6 +1,4 @@
 $(document).ready(function(){
-    $('#password-generator').submit();
-
     $('#password-display').html(password);
     $('select[name="from"]').click(function(){
         var value = $(this).val()
@@ -25,7 +23,7 @@ $(document).ready(function(){
             $('#password-display').html(data.password);
             $('#sentence-display').html(data.sentence);
         })
-    })
+    });
 
     $(document).ajaxSend(function( event, xhr, settings ){
         if ( settings.url === "/" ){
@@ -35,5 +33,7 @@ $(document).ready(function(){
         if ( settings.url === "/" ){
             $('.loading-container').hide();
         }
-    })
+    });
+
+    $('#password-generator').submit();
 });
