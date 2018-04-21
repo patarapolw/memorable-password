@@ -24,10 +24,9 @@ pytest-doctestplus==0.1.2
 pytest-repeat==0.4.1
 pytest-timeout==1.2.1
 PyYAML==3.12
--e git+https://github.com/patarapolw/randomsentence.git@07c7efc45ab185d9ce904436ac4d79b9ae2b4ba4#egg=randomsentence
+-e git+https://github.com/patarapolw/randomsentence.git@e9744c311731736028f572c3c8ed08e5e5110a44#egg=randomsentence
 requests==2.18.4
 six==1.11.0
-textblob==0.15.1
 Unidecode==1.0.22
 urllib3==1.22
 Werkzeug==0.14.1
