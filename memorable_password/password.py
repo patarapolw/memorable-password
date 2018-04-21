@@ -91,7 +91,7 @@ class PasswordGenerator:
             if index >= len(keywords):
                 break
 
-            is_overlap = (keywords[index] == token)
+            is_overlap = (keywords[index].lower() == token.lower())
             yield token, is_overlap
             if is_overlap:
                 index += 1

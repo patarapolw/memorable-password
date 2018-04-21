@@ -77,10 +77,17 @@ def image():
 
 
 def render_tokens(tagged_tokens):
+    def boldify(match_obj):
+        to_consider = match_obj.group(0)
+        if to_consider.lower() == token.lower():
+            return '<b>{}</b>'.format(to_consider)
+        else:
+            return to_consider
+
     sentence = sentence_tool.detokenize_tagged(tagged_tokens)
 
-    for token, is_overlap in tagged_tokens:
+    for token, is_overlap in sorted(tagged_tokens, key=len):
         if is_overlap:
-            sentence = sentence.replace(token, '<b>{}</b>'.format(token))
+            sentence = re.sub('(\w+)', boldify, sentence)
 
     return sentence
