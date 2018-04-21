@@ -3,16 +3,19 @@ from flask import request, render_template, jsonify
 from randomsentence import SentenceTool
 import re
 import string
+import pickle
 
 from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemonic
 from webview import mempass
 from webview.image import load_image
 
 sentence_tool = SentenceTool()
-pass_gen = PasswordGenerator()
 to_sentence = ToSentence()
 conformizer = Conformize()
 mnemonic = Mnemonic()
+
+with open('pass_gen.pkl', 'rb') as f:
+    pass_gen = pickle.load(f)
 
 
 @mempass.route('/', methods=['GET', 'POST'])
