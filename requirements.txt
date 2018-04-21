@@ -25,7 +25,9 @@ pytest-repeat==0.4.1
 pytest-timeout==1.2.1
 PyYAML==3.12
 -e git+https://github.com/patarapolw/randomsentence.git@e9744c311731736028f572c3c8ed08e5e5110a44#egg=randomsentence
+redis==2.10.6
 requests==2.18.4
+rq==0.10.0
 six==1.11.0
 Unidecode==1.0.22
 urllib3==1.22

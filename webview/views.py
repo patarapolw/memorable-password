@@ -4,15 +4,22 @@ from randomsentence import SentenceTool
 import re
 import string
 
+from rq import Queue
+from worker import conn
+
 from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemonic
 from webview import mempass
 from webview.image import load_image
 
+q = Queue(connection=conn)
+
 sentence_tool = SentenceTool()
-pass_gen = None
+pass_gen = PasswordGenerator()
 to_sentence = ToSentence()
 conformizer = Conformize()
 mnemonic = Mnemonic()
+
+q.enqueue(pass_gen.init_brown, True)
 
 
 @mempass.route('/', methods=['GET', 'POST'])
@@ -20,8 +27,6 @@ def index():
     global pass_gen
 
     if request.method == 'POST':
-        if pass_gen is None:
-            pass_gen = PasswordGenerator(do_markovify=False)
         data = request.form
         if data['from'] == 'random':
             if data['type'] == 'initials':
