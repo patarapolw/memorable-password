@@ -4,8 +4,6 @@ Generate a new password/PIN with associated sentence.
 
 from randomsentence import SentenceTool, WordTool, Brown
 from time import time
-import string
-import re
 
 from memorable_password.mnemonic import Mnemonic, InitialSoftener
 from memorable_password.policy import Conformize
