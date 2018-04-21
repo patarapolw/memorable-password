@@ -19,7 +19,7 @@ mnemonic = Mnemonic()
 def index():
     if request.method == 'POST':
         if pass_gen.brown is None:
-            pass_gen.init_brown(do_markovify=False)
+            pass_gen.init_brown(do_markovify=True)
         data = request.form
         if data['from'] == 'random':
             if data['type'] == 'initials':
