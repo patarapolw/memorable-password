@@ -3,7 +3,6 @@ from flask import request, render_template, jsonify
 from randomsentence import SentenceTool
 import re
 import string
-import pickle
 
 from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemonic
 from webview import mempass
