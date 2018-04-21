@@ -16,7 +16,8 @@ to_sentence = ToSentence()
 conformizer = Conformize()
 mnemonic = Mnemonic()
 
-Thread(target=pass_gen.init_brown, args=(True,))
+t = Thread(target=pass_gen.init_brown, args=(True,))
+t.start()
 
 
 @mempass.route('/', methods=['GET', 'POST'])
