@@ -195,3 +195,5 @@ venv.bak/
 
 
 # End of https://www.gitignore.io/api/osx,python,pycharm
+
+# *.pkl

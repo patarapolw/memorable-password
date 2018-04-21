@@ -14,15 +14,17 @@ to_sentence = ToSentence()
 conformizer = Conformize()
 mnemonic = Mnemonic()
 
-with open('pass_gen.pkl', 'rb') as f:
-    pass_gen = pickle.load(f)
+pass_gen = None
 
 
 @mempass.route('/', methods=['GET', 'POST'])
 def index():
+    global pass_gen
+
     if request.method == 'POST':
-        if pass_gen.brown is None:
-            pass_gen.init_brown(do_markovify=False)
+        if pass_gen is None:
+            with open('pass_gen.pkl', 'rb') as f:
+                pass_gen = pickle.load(f)
         data = request.form
         if data['from'] == 'random':
             if data['type'] == 'initials':
