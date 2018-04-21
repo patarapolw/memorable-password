@@ -95,5 +95,3 @@ def render_tokens(tagged_tokens):
             sentence = re.sub('(\w+)', boldify, sentence)
 
     return sentence
-
-##
