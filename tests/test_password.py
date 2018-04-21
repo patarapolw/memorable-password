@@ -1,5 +1,6 @@
 """
-5.3048 seconds per PasswordGenerator
+10.8698 seconds per PasswordGenerator, do_markovify=False
+25.7119 seconds per PasswordGenerator, do_markovify=True
 0.0900 seconds per PasswordGenerator.refresh
 0.0935 seconds per PasswordGenerator.new_password
 0.0799 seconds per PasswordGenerator.new_pin
@@ -17,12 +18,28 @@ def test_refresh():
 
 
 @pytest.mark.repeat
-def test_new_password():
+def test_new_initial_password():
     """
     200 rep passed.
     :return:
     """
-    password, overlap_list = pg.new_password()
+    password, overlap_list = pg.new_initial_password()
+    print(password)
+
+    for token, is_overlap in overlap_list:
+        if is_overlap:
+            print(token)
+        assert isinstance(token, str)
+        assert isinstance(is_overlap, bool)
+
+
+@pytest.mark.repeat
+def test_new_diceware_password():
+    """
+    200 rep passed.
+    :return:
+    """
+    password, overlap_list = pg.new_diceware_password()
     print(password)
 
     for token, is_overlap in overlap_list:
@@ -46,5 +63,6 @@ def test_new_pin():
 
 if __name__ == '__main__':
     from tests import timeit
+    from functools import partial
 
-    timeit(test_new_pin, rep=1000)
+    timeit(partial(PasswordGenerator, False), rep=1000)
