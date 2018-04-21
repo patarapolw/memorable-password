@@ -42,7 +42,7 @@ class Mnemonic:
                 if word.startswith(starter):
                     return k
 
-        return ''
+        return None
 
     def reality_to_starter(self, system, mem):
         """
@@ -57,6 +57,42 @@ class Mnemonic:
         []
         """
         return self.mnemonic[system].get(mem, [])
+
+
+class InitialSoftener(Mnemonic):
+    def word_to_key(self, word, system='initials'):
+        """
+
+        :param word:
+        :param system:
+        :return:
+        >>> InitialSoftener().word_to_key('Exaltation')
+        'x'
+        >>> InitialSoftener().word_to_key('Normalword')
+        'n'
+        """
+        for k, v in self.mnemonic[system].items():
+            for starter in v:
+                if word.lower().startswith(starter):
+                    return k
+
+        if word[0].isalpha():
+            return word.lower()[0]
+        else:
+            return None
+
+    def reality_to_starter(self, mem, system='initials'):
+        """
+
+        :param mem:
+        :param system:
+        :return:
+        >>> InitialSoftener().reality_to_starter('x')
+        ['ex']
+        >>> InitialSoftener().reality_to_starter('n')
+        ['n']
+        """
+        return self.mnemonic[system].get(mem.lower(), [mem.lower()[0]] if mem[0].isalpha() else [])
 
 
 if __name__ == '__main__':

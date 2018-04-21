@@ -20,8 +20,10 @@ def index():
     if request.method == 'POST':
         data = request.form
         if data['from'] == 'random':
-            if data['type'] == 'password':
-                tagged_password = pass_gen.new_password()
+            if data['type'] == 'initials':
+                tagged_password = pass_gen.new_initial_password()
+            elif data['type'] == 'diceware':
+                tagged_password = pass_gen.new_diceware_password()
             else:
                 tagged_password = pass_gen.new_pin()
 
@@ -31,9 +33,9 @@ def index():
                 password = tagged_sentence = ''
 
         elif data['from'] == 'keywords':
-            keywords = [keyword.strip() for keyword in data['material'].split(',')]
+            keywords = [keyword.strip() for keyword in data['material'].replace(' ', ',').split(',')]
             tagged_sentence = to_sentence.from_keywords(keywords)
-            if data['type'] == 'password':
+            if data['type'] in ['initials', 'diceware']:
                 password = conformizer.conformize(
                     re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
             else:
@@ -47,7 +49,9 @@ def index():
         else:  # from 'initials'
             initials = data['material']
             tagged_sentence = to_sentence.from_initials(initials)
-            if data['type'] == 'password':
+            if data['type'] == 'initials':
+                password = conformizer.conformize(initials)
+            elif data['type'] == 'diceware':
                 keywords = [token for token, overlap in tagged_sentence if overlap]
                 password = conformizer.conformize(
                     re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
@@ -59,7 +63,7 @@ def index():
             'sentence': render_tokens(tagged_sentence)
         })
     else:
-        tagged_password = pass_gen.new_password()
+        tagged_password = pass_gen.new_initial_password()
         if tagged_password is None:
             tagged_password = ('', '')
 
@@ -91,5 +95,3 @@ def render_tokens(tagged_tokens):
             sentence = re.sub('(\w+)', boldify, sentence)
 
     return sentence
-
-# Update Brown

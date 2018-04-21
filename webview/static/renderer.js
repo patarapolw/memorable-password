@@ -17,13 +17,6 @@ $(document).ready(function(){
             }
         }
     });
-    $('input[name="type"]').click(function(){
-        if($(this).val() === 'password'){
-            console.log('type-password selected');
-        } else {
-            console.log('type-pin selected');
-        }
-    });
     $('#password-generator').submit(function(e){
         e.preventDefault();
         $.post('/', $(this).serialize())

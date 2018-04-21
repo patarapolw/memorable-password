@@ -15,6 +15,9 @@
             min-height: 1.5em;
             font-size: 20px;
         }
+        .btn-secondary {
+            min-width: 100px;
+        }
     </style>
 </head>
 <body>
@@ -77,8 +80,12 @@
                     <div class="row">
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <label class="btn btn-secondary active">
-                            <input type="radio" name="type" value="password" id="type-password" autocomplete="off" checked>
-                            Password
+                            <input type="radio" name="type" value="initials" id="type-initials" autocomplete="off" checked>
+                            Initial-based
+                        </label>
+                        <label class="btn btn-secondary active">
+                            <input type="radio" name="type" value="diceware" id="type-diceware" autocomplete="off">
+                            Diceware-based
                         </label>
                         <label class="btn btn-secondary">
                             <input type="radio" name="type" value="pin" id="type-pin" autocomplete="off">
