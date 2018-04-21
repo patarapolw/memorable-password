@@ -13,10 +13,10 @@ __doctest_skip__ = ['PasswordGenerator.refresh', 'PasswordGenerator.new_password
 
 
 class PasswordGenerator:
-    def __init__(self):
+    def __init__(self, do_markovify=True):
         self.sentence_tool = SentenceTool()
         self.word_tool = WordTool()
-        self.brown = Brown(do_markovify=True)
+        self.brown = Brown(do_markovify=do_markovify)
         self.conformizer = Conformize()
         self.mnemonic = Mnemonic()
         self.initial_softener = InitialSoftener()

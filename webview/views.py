@@ -1,4 +1,4 @@
-from flask import request, render_template, Markup, jsonify
+from flask import request, render_template, jsonify
 
 from randomsentence import SentenceTool
 import re
@@ -21,7 +21,7 @@ def index():
 
     if request.method == 'POST':
         if pass_gen is None:
-            pass_gen = PasswordGenerator()
+            pass_gen = PasswordGenerator(do_markovify=False)
         data = request.form
         if data['from'] == 'random':
             if data['type'] == 'initials':
