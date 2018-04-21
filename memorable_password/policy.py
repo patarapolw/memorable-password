@@ -1,6 +1,7 @@
 import yaml
 from time import time
 from random import randrange
+import re
 import string
 try:
     from secrets import choice
@@ -25,6 +26,8 @@ class Conformize:
         >>> Conformize().conformize('uNlikelypiezoelectricgrounds')
         'uN1iKe1yP!EZoe13ctriCgr0UND5'
         """
+        password = re.sub('{}'.format(re.escape(string.punctuation)), '', password)
+
         start = time()
         while time()-start < timeout:
             if not self.policy.is_conform(password):

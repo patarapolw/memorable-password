@@ -9,6 +9,7 @@ import re
 
 from memorable_password.mnemonic import Mnemonic
 from memorable_password.policy import Conformize
+from memorable_password.sentence import ToSentence
 
 __doctest_skip__ = ['PasswordGenerator.refresh', 'PasswordGenerator.new_password', 'PasswordGenerator.new_pin']
 
@@ -20,6 +21,7 @@ class PasswordGenerator:
         self.brown = Brown()
         self.conformizer = Conformize()
         self.mnemonic = Mnemonic()
+        self.to_sentence = ToSentence()
 
         self.tokens = None
 
@@ -62,26 +64,10 @@ class PasswordGenerator:
         >>> PasswordGenerator().new_password()
         ('Ancho2edpastpredi$%osit!on', [('Social', False), ('process', False), ('is', False), ('always', False), ('anchored', True), ('in', False), ('past', True), ('predisposition', True)])
         """
-        self.refresh(count_common, min_common, refresh_timeout)
-        current_keywords_with_rating = self.sentence_tool.rate(self.tokens)
-        start = time()
-        while time() - start < timeout:
-            keywords = [keyword for keyword, _ in current_keywords_with_rating if self.word_tool.is_word(keyword)]
-            password = self.conformizer.conformize(
-                re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
-            if password is None:
-                password = ''
-            if min_length <= len(password) <= max_length:
-                return password, list(self.overlap_keywords(keywords, self.tokens))
 
-            elif min_length > len(password):
-                self.refresh(count_common, min_common, refresh_timeout)
-                current_keywords_with_rating = self.sentence_tool.rate(self.tokens)
-            elif len(password) > max_length:
-                min_rating_pair = min(current_keywords_with_rating, key=lambda x: x[1])
-                current_keywords_with_rating.remove(min_rating_pair)
-
-        return None
+        keywords = [self.word_tool.get_random_word() for _ in range(count_common)]
+        password = self.conformizer.conformize(''.join(keywords))
+        return password, self.to_sentence.from_keywords(keywords)
 
 
     @staticmethod
