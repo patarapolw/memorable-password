@@ -1,5 +1,6 @@
 $(document).ready(function(){
-    $('#sentence-display').html(sentence);
+    $('#password-generator').submit();
+
     $('#password-display').html(password);
     $('select[name="from"]').click(function(){
         var value = $(this).val()

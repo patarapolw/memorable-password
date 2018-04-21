@@ -16,7 +16,7 @@ class PasswordGenerator:
     def __init__(self):
         self.sentence_tool = SentenceTool()
         self.word_tool = WordTool()
-        self.brown = Brown(do_markovify=False)
+        self.brown = Brown(do_markovify=True)
         self.conformizer = Conformize()
         self.mnemonic = Mnemonic()
         self.initial_softener = InitialSoftener()

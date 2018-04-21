@@ -8,15 +8,11 @@ from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemon
 from webview import mempass
 from webview.image import load_image
 
-pass_gen = PasswordGenerator()
-to_sentence = ToSentence()
-sentence_tool = SentenceTool()
-conformizer = Conformize()
-mnemonic = Mnemonic()
-
 
 @mempass.route('/', methods=['GET', 'POST'])
 def index():
+    global pass_gen, to_sentence, sentence_tool, conformizer, mnemonic
+
     if request.method == 'POST':
         data = request.form
         if data['from'] == 'random':
@@ -63,12 +59,13 @@ def index():
             'sentence': render_tokens(tagged_sentence)
         })
     else:
-        tagged_password = pass_gen.new_initial_password()
-        if tagged_password is None:
-            tagged_password = ('', '')
+        pass_gen = PasswordGenerator()
+        to_sentence = ToSentence()
+        sentence_tool = SentenceTool()
+        conformizer = Conformize()
+        mnemonic = Mnemonic()
 
-    return render_template('index.html',
-                           password=tagged_password[0], sentence=Markup(render_tokens(tagged_password[1])))
+        return render_template('index.html')
 
 
 @mempass.route('/img', methods=['POST'])
