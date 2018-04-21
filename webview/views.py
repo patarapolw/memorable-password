@@ -4,8 +4,6 @@ from randomsentence import SentenceTool
 import re
 import string
 
-from threading import Thread
-
 from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemonic
 from webview import mempass
 from webview.image import load_image
@@ -16,15 +14,12 @@ to_sentence = ToSentence()
 conformizer = Conformize()
 mnemonic = Mnemonic()
 
-t = Thread(target=pass_gen.init_brown, args=(True,))
-t.start()
-
 
 @mempass.route('/', methods=['GET', 'POST'])
 def index():
-    global pass_gen
-
     if request.method == 'POST':
+        if pass_gen.brown is None:
+            pass_gen.init_brown(False)
         data = request.form
         if data['from'] == 'random':
             if data['type'] == 'initials':
