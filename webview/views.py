@@ -23,8 +23,12 @@ def index():
 
     if request.method == 'POST':
         if pass_gen is None:
-            with open('pass_gen.pkl', 'rb') as f:
-                pass_gen = pickle.load(f)
+            try:
+                with open('pass_gen.pkl', 'rb') as f:
+                    pass_gen = pickle.load(f)
+            except FileNotFoundError:
+                pass_gen = PasswordGenerator(do_markovify=True)
+
         data = request.form
         if data['from'] == 'random':
             if data['type'] == 'initials':
