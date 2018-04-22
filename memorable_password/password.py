@@ -4,6 +4,8 @@ Generate a new password/PIN with associated sentence.
 
 from randomsentence import SentenceTool, WordTool, Brown
 from time import time
+import re
+import string
 
 from memorable_password.mnemonic import Mnemonic, InitialSoftener
 from memorable_password.policy import Conformize
@@ -12,7 +14,7 @@ from memorable_password.sentence import ToSentence
 __doctest_skip__ = ['PasswordGenerator.refresh', 'PasswordGenerator.new_password', 'PasswordGenerator.new_pin']
 
 
-class PasswordGenerator:
+class NewPassword:
     def __init__(self, do_markovify=True):
         self.sentence_tool = SentenceTool()
         self.word_tool = WordTool()
@@ -33,7 +35,7 @@ class PasswordGenerator:
         :param float timeout: time in seconds to timeout
         :return list of str: return tokens on success
 
-        >>> PasswordGenerator().refresh()
+        >>> NewPassword().refresh()
         ['The', 'men', 'in', 'power', 'are', 'committed', 'in', 'principle', 'to', 'modernization', ',', 'but', 'economic', 'and', 'social', 'changes', 'are', 'proceeding', 'only', 'erratically', '.']
         """
         start = time()
@@ -55,7 +57,7 @@ class PasswordGenerator:
         :param int number_of_words: number of words generated
         :return tuple: a suggested password and a sentence
 
-        >>> PasswordGenerator().new_diceware_password()
+        >>> NewPassword().new_diceware_password()
         ('Ancho2edpastpredi$%osit!on', [('Social', False), ('process', False), ('is', False), ('always', False), ('anchored', True), ('in', False), ('past', True), ('predisposition', True)])
         """
         keywords = [self.word_tool.get_random_word() for _ in range(number_of_words)]
@@ -105,7 +107,7 @@ class PasswordGenerator:
         :param float refresh_timeout: timeout to new sentence
         :return str: a string of digits
 
-        >>> PasswordGenerator().new_pin()
+        >>> NewPassword().new_pin()
         ('32700', [('His', False), ('mouth', True), ('was', False), ('open', False), (',', False), ('his', False), ('neck', True), ('corded', True), ('with', False), ('the', False), ('strain', True), ('of', False), ('his', False), ('screams', True)])
         """
         self.refresh(count_common=min_length, min_common=min_common, timeout=refresh_timeout)
@@ -149,6 +151,56 @@ class PasswordGenerator:
             yield token, is_overlap
             if is_overlap:
                 index += 1
+
+
+class GeneratePassword(NewPassword):
+    def __init__(self, do_markovify=True):
+        super().__init__(do_markovify=do_markovify)
+
+    def generate(self, password_from, password_type, password_material):
+        if password_from == 'random':
+            if password_type == 'initials':
+                tagged_password = self.new_initial_password()
+            elif password_type == 'diceware':
+                tagged_password = self.new_diceware_password()
+            else:
+                tagged_password = self.new_pin()
+
+            if tagged_password is not None:
+                password, tagged_sentence = tagged_password
+            else:
+                password = tagged_sentence = ''
+
+        elif password_from == 'keywords':
+            keywords = [keyword.strip() for keyword in password_material.replace(' ', ',').split(',')]
+            if len(keywords) < 4:
+                keywords += [self.word_tool.get_random_common_word() for _ in range(4-len(keywords))]
+
+            tagged_sentence = self.to_sentence.from_keywords(keywords)
+            if password_type in ['initials', 'diceware']:
+                password = self.conformizer.conformize(
+                    re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
+            else:
+                password = ''.join([self.mnemonic.word_to_key('major_system', keyword.lower()) for keyword in keywords])
+        elif password_from == 'pin':
+            tagged_sentence = self.to_sentence.from_pin(password_material)
+            if password_type == 'diceware':
+                password = self.conformizer.conformize(''.join([token for token, overlap in tagged_sentence if overlap]))
+            else:
+                password = password_material
+        else:  # from 'initials'
+            initials = password_material
+            tagged_sentence = self.to_sentence.from_initials(initials)
+            if password_type == 'initials':
+                password = self.conformizer.conformize(initials)
+            elif password_type == 'diceware':
+                keywords = [token for token, overlap in tagged_sentence if overlap]
+                password = self.conformizer.conformize(
+                    re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
+            else:
+                password = ''.join([self.mnemonic.word_to_key('major_system', char.lower()) for char in initials])
+
+        return password, tagged_sentence
 
 
 if __name__ == '__main__':

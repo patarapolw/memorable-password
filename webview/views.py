@@ -2,17 +2,12 @@ from flask import request, render_template, jsonify
 
 from randomsentence import SentenceTool
 import re
-import string
 
-from memorable_password import PasswordGenerator, ToSentence, Conformize, Mnemonic
+from memorable_password import GeneratePassword
 from webview import mempass
 from webview.image import load_image
 
 sentence_tool = SentenceTool()
-to_sentence = ToSentence()
-conformizer = Conformize()
-mnemonic = Mnemonic()
-
 pass_gen = None
 
 
@@ -22,47 +17,12 @@ def index():
 
     if request.method == 'POST':
         if pass_gen is None:
-            pass_gen = PasswordGenerator(do_markovify=False)
+            pass_gen = GeneratePassword(do_markovify=True)
 
         data = request.form
-        if data['from'] == 'random':
-            if data['type'] == 'initials':
-                tagged_password = pass_gen.new_initial_password()
-            elif data['type'] == 'diceware':
-                tagged_password = pass_gen.new_diceware_password()
-            else:
-                tagged_password = pass_gen.new_pin()
-
-            if tagged_password is not None:
-                password, tagged_sentence = tagged_password
-            else:
-                password = tagged_sentence = ''
-
-        elif data['from'] == 'keywords':
-            keywords = [keyword.strip() for keyword in data['material'].replace(' ', ',').split(',')]
-            tagged_sentence = to_sentence.from_keywords(keywords)
-            if data['type'] in ['initials', 'diceware']:
-                password = conformizer.conformize(
-                    re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
-            else:
-                password = ''.join([mnemonic.word_to_key('major_system', keyword.lower()) for keyword in keywords])
-        elif data['from'] == 'pin':
-            tagged_sentence = to_sentence.from_pin(data['material'])
-            if data['type'] == 'password':
-                password = conformizer.conformize(''.join([token for token, overlap in tagged_sentence if overlap]))
-            else:
-                password = data['material']
-        else:  # from 'initials'
-            initials = data['material']
-            tagged_sentence = to_sentence.from_initials(initials)
-            if data['type'] == 'initials':
-                password = conformizer.conformize(initials)
-            elif data['type'] == 'diceware':
-                keywords = [token for token, overlap in tagged_sentence if overlap]
-                password = conformizer.conformize(
-                    re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
-            else:
-                password = ''.join([mnemonic.word_to_key('major_system', char.lower()) for char in initials])
+        password, tagged_sentence = pass_gen.generate(password_from=data['from'],
+                                                      password_type=data['type'],
+                                                      password_material=data.get('material', ''))
 
         return jsonify({
             'password': password,

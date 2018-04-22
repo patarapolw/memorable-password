@@ -36,20 +36,25 @@
             text: 'Random'
             group: 'from_btn'
             state: 'down'
+            on_press: root.from_pressed(self)
         ToggleButton:
             id: from_keywords
             text: 'Keywords'
             group: 'from_btn'
+            on_press: root.from_pressed(self)
         ToggleButton:
             id: from_initials
             text: 'Initials'
             group: 'from_btn'
+            on_press: root.from_pressed(self)
         ToggleButton:
             id: from_pin
             text: 'PIN'
             group: 'from_btn'
+            on_press: root.from_pressed(self)
     TextInput:
         id: from_text
+        multiline: False
 
     Label:
         text: 'Password type:'
