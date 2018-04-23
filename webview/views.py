@@ -18,9 +18,11 @@ def index():
 
     if request.method == 'POST':
         if pass_gen is None:
-            # pass_gen = GeneratePassword(do_markovify=True)
-            with open('generate_password.pkl', 'rb') as f:
-                pass_gen = pickle.load(f)
+            if request.url == 'http://127.0.0.1:5000/':
+                pass_gen = GeneratePassword(do_markovify=True)
+            else:
+                with open('generate_password.pkl', 'rb') as f:
+                    pass_gen = pickle.load(f)
 
         data = request.form
         password, tagged_sentence = pass_gen.generate(password_from=data['from'],
