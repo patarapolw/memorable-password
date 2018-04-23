@@ -24,7 +24,7 @@ class Mempass(BoxLayout):
 
     def generate_password(self):
         if self.pass_gen is None:
-            with open('generate_password.pkl', 'rb') as f:
+            with open('_generate_password.pkl', 'rb') as f:
                 self.pass_gen = pickle.load(f)
 
         password_from = 'random'
