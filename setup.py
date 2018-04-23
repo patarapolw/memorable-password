@@ -52,7 +52,8 @@ setup(
     tests_require=pytest_requires,
     extras_require={  # Optional
         'test': ['tox'] + pytest_requires,
-        'android'
+        'android': android_requires,
+        'heroku': ['gunicorn'],  # and *.pkl
         'with-language-check': ['language-check']
     },
     package_data={  # Optional
