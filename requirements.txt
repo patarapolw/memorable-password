@@ -2,3 +2,4 @@ nltk
 PyYAML
 markovify
 flask
+gunicorn
