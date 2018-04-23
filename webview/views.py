@@ -21,7 +21,7 @@ def index():
             if request.url == 'http://127.0.0.1:5000/':
                 pass_gen = GeneratePassword(do_markovify=True)
             else:
-                with open('_generate_password.pkl', 'rb') as f:
+                with open('generate_password.pkl', 'rb') as f:
                     pass_gen = pickle.load(f)
 
         data = request.form
