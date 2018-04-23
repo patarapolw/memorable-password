@@ -2,6 +2,7 @@ from nltk.corpus import brown
 import yaml
 from time import time
 import markovify
+import copy
 
 try:
     from secrets import choice
@@ -15,7 +16,7 @@ __doctest_skip__ = ['Brown.get_tagged_sent', 'Brown.word_from_pos_and_initials']
 
 class Brown:
     def __init__(self, do_markovify=False):
-        self.tagged_sents = brown.tagged_sents()
+        self.tagged_sents = list(brown.tagged_sents())
         self.model = None
         if do_markovify:
             self.model = markovify.Chain(self.tagged_sents, 2)
