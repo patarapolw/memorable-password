@@ -1,0 +1,80 @@
+#:kivy 1.0.9
+
+<Mempass>:
+    orientation: 'vertical'
+    padding: 20
+
+    Label:
+        id: password_header
+        text: 'Password:'
+    Label:
+        id: password
+        size: self.texture_size
+        text_size: self.size
+        halign: 'center'
+        valign: 'top'
+
+    Label:
+        id: sentence_header
+        text: 'Sentence:'
+    Label:
+        id: sentence
+        markup: True
+        size: self.texture_size
+        text_size: self.size
+        halign: 'center'
+        valign: 'top'
+
+    Label:
+        id: from_header
+        text: 'From:'
+    BoxLayout:
+        orientation: 'horizontal'
+
+        ToggleButton:
+            id: from_random
+            text: 'Random'
+            group: 'from_btn'
+            state: 'down'
+            on_press: root.from_pressed(self)
+        ToggleButton:
+            id: from_keywords
+            text: 'Keywords'
+            group: 'from_btn'
+            on_press: root.from_pressed(self)
+        ToggleButton:
+            id: from_initials
+            text: 'Initials'
+            group: 'from_btn'
+            on_press: root.from_pressed(self)
+        ToggleButton:
+            id: from_pin
+            text: 'PIN'
+            group: 'from_btn'
+            on_press: root.from_pressed(self)
+    TextInput:
+        id: from_text
+        multiline: False
+
+    Label:
+        text: 'Password type:'
+    BoxLayout:
+        orientation: 'horizontal'
+
+        ToggleButton:
+            id: type_initials
+            text: 'Initialism'
+            group: 'type_btn'
+            state: 'down'
+        ToggleButton:
+            id: type_diceware
+            text: 'Diceware'
+            group: 'type_btn'
+        ToggleButton:
+            id: type_pin
+            text: 'PIN'
+            group: 'type_btn'
+
+    Button:
+        text: 'Generate'
+        on_press: root.generate_password()

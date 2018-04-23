@@ -2,10 +2,9 @@ from flask import request, render_template, jsonify
 
 from randomsentence import SentenceTool
 import re
+import pickle
 
-from memorable_password import GeneratePassword
 from webview import mempass
-from webview.image import load_image
 
 sentence_tool = SentenceTool()
 pass_gen = None
@@ -17,7 +16,8 @@ def index():
 
     if request.method == 'POST':
         if pass_gen is None:
-            pass_gen = GeneratePassword(do_markovify=True)
+            with open('generate_password.pkl', 'rb') as f:
+                pass_gen = pickle.load(f)
 
         data = request.form
         password, tagged_sentence = pass_gen.generate(password_from=data['from'],
@@ -30,15 +30,6 @@ def index():
         })
     else:
         return render_template('index.html')
-
-
-@mempass.route('/img', methods=['POST'])
-def image():
-    if request.method == 'POST':
-        data = request.form
-        return load_image(data['sentence'])
-
-    return ''
 
 
 def render_tokens(tagged_tokens):
