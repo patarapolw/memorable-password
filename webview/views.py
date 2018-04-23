@@ -1,9 +1,11 @@
 from flask import request, render_template, jsonify
 
-from randomsentence import SentenceTool
+
 import re
 import pickle
 
+from randomsentence import SentenceTool
+from memorable_password import GeneratePassword
 from webview import mempass
 
 sentence_tool = SentenceTool()
@@ -16,6 +18,7 @@ def index():
 
     if request.method == 'POST':
         if pass_gen is None:
+            # pass_gen = GeneratePassword(do_markovify=True)
             with open('generate_password.pkl', 'rb') as f:
                 pass_gen = pickle.load(f)
 

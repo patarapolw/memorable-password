@@ -16,6 +16,7 @@ __doctest_skip__ = ['Brown.get_tagged_sent', 'Brown.word_from_pos_and_initials']
 class Brown:
     def __init__(self, do_markovify=False):
         self.tagged_sents = brown.tagged_sents()
+        self.model = None
         if do_markovify:
             self.model = markovify.Chain(self.tagged_sents, 2)
 
@@ -32,9 +33,9 @@ class Brown:
         >>> Brown().get_tagged_sent()
         [('As', 'CS'), ('she', 'PPS'), ('was', 'BEDZ'), ('rather', 'QL'), ('tired', 'VBN'), ('this', 'DT'), ('evening', 'NN'), (',', ','), ('her', 'PP$'), ('simple', 'JJ'), ('``', '``'), ('Thank', 'VB'), ('you', 'PPO'), ('for', 'IN'), ('the', 'AT'), ('use', 'NN'), ('of', 'IN'), ('your', 'PP$'), ('bath', 'NN'), ("''", "''"), ('--', '--'), ('when', 'WRB'), ('she', 'PPS'), ('sat', 'VBD'), ('down', 'RP'), ('opposite', 'IN'), ('him', 'PPO'), ('--', '--'), ('spoken', 'VBN'), ('in', 'IN'), ('a', 'AT'), ('low', 'JJ'), ('voice', 'NN'), (',', ','), ('came', 'VBD'), ('across', 'RB'), ('with', 'IN'), ('coolnesses', 'NNS'), ('of', 'IN'), ('intelligence', 'NN'), ('and', 'CC'), ('control', 'NN'), ('.', '.')]
         """
-        try:
+        if self.model is not None:
             return list(self.model.gen())
-        except AttributeError:
+        else:
             return choice(self.tagged_sents)
 
     def initials_to_pos(self, initials):
