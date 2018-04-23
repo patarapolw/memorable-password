@@ -79,7 +79,7 @@ class InitialSoftener(Mnemonic):
         if word[0].isalpha():
             return word.lower()[0]
         else:
-            return None
+            return ''
 
     def reality_to_starter(self, mem, system='initials'):
         """

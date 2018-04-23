@@ -181,7 +181,7 @@ class GeneratePassword(NewPassword):
                 password = self.conformizer.conformize(
                     re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
             else:
-                password = ''.join([self.mnemonic.word_to_key('major_system', keyword.lower()) for keyword in keywords])
+                password = ''.join([self.initial_softener.word_to_key(keyword.lower()) for keyword in keywords])
         elif password_from == 'pin':
             tagged_sentence = self.to_sentence.from_pin(password_material)
             if password_type == 'diceware':
