@@ -9,7 +9,6 @@ click==6.7
 colorama==0.3.9
 cryptography==2.2.2
 docutils==0.14
-duendecat==0.0.0
 et-xmlfile==1.0.1
 eventlet==0.22.1
 Flask==0.12.2
@@ -32,7 +31,6 @@ pew==1.1.2
 pexpect==4.5.0
 pipenv==10.1.0
 pluggy==0.6.0
-PolUtils==0.1.0.dev1
 -e git+https://github.com/patarapolw/pronounceable.git@e87425d00f60253fa44164c496ff44c93ff5fa1a#egg=pronounceable
 ptyprocess==0.5.2
 py==1.5.3
