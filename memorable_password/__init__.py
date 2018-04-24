@@ -1,5 +1,5 @@
 from .sentence import ToSentence
-from .password import NewPassword, GeneratePassword
+from .password import GeneratePassword
 from .policy import Conformize
 from .mnemonic import Mnemonic
 

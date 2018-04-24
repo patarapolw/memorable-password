@@ -7,9 +7,9 @@
 """
 import pytest
 
-from memorable_password.password import PasswordGenerator
+from memorable_password.password import GeneratePassword
 
-pg = PasswordGenerator()
+pg = GeneratePassword()
 
 
 def test_refresh():
@@ -50,6 +50,17 @@ def test_new_diceware_password():
 
 
 @pytest.mark.repeat
+def test_new_common_diceware_password():
+    password, overlap_list = pg.new_common_diceware_password()
+    print(password, overlap_list)
+
+    if overlap_list is not None:
+        return True
+    else:
+        return False
+
+
+@pytest.mark.repeat
 def test_new_pin():
     pin, overlap_list = pg.new_pin()
     print(pin)
@@ -65,4 +76,4 @@ if __name__ == '__main__':
     from tests import timeit
     from functools import partial
 
-    timeit(partial(PasswordGenerator, False), rep=1000)
+    timeit(test_new_common_diceware_password)

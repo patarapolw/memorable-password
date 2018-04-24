@@ -25,7 +25,8 @@ def index():
         data = request.form
         password, tagged_sentence = pass_gen.generate(password_from=data['from'],
                                                       password_type=data['type'],
-                                                      password_material=data.get('material', ''))
+                                                      password_material=data.get('material', ''),
+                                                      hint=data.get('hint', ''))
 
         return jsonify({
             'password': password,

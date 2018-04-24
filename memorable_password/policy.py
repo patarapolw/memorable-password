@@ -43,7 +43,7 @@ class Conformize:
             else:
                 return password
 
-        print(password)
+        print('Non-conformed password:', password)
         return None
 
 

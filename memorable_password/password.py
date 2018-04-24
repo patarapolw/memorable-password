@@ -14,7 +14,7 @@ from memorable_password.sentence import ToSentence
 __doctest_skip__ = ['PasswordGenerator.refresh', 'PasswordGenerator.new_password', 'PasswordGenerator.new_pin']
 
 
-class NewPassword:
+class GeneratePassword:
     def __init__(self, do_markovify=True):
         self.sentence_tool = SentenceTool()
         self.word_tool = WordTool()
@@ -35,7 +35,7 @@ class NewPassword:
         :param float timeout: time in seconds to timeout
         :return list of str: return tokens on success
 
-        >>> NewPassword().refresh()
+        >>> GeneratePassword().refresh()
         ['The', 'men', 'in', 'power', 'are', 'committed', 'in', 'principle', 'to', 'modernization', ',', 'but', 'economic', 'and', 'social', 'changes', 'are', 'proceeding', 'only', 'erratically', '.']
         """
         start = time()
@@ -51,17 +51,36 @@ class NewPassword:
 
         raise TimeoutError
 
-    def new_diceware_password(self, number_of_words=4):
+    def new_diceware_password(self, number_of_words=4, hint=''):
         """
         Return a suggested password
         :param int number_of_words: number of words generated
+        :param str hint:
         :return tuple: a suggested password and a sentence
 
-        >>> NewPassword().new_diceware_password()
+        >>> GeneratePassword().new_diceware_password()
         ('Ancho2edpastpredi$%osit!on', [('Social', False), ('process', False), ('is', False), ('always', False), ('anchored', True), ('in', False), ('past', True), ('predisposition', True)])
         """
         keywords = [self.word_tool.get_random_word() for _ in range(number_of_words)]
         password = self.conformizer.conformize(''.join(keywords))
+        if hint:
+            keywords = [hint] + keywords
+        return password, self.to_sentence.from_keywords(keywords)
+
+    def new_common_diceware_password(self, number_of_words=6, hint=''):
+        """
+        Return a suggested password
+        :param int number_of_words: number of words generated
+        :param str hint:
+        :return tuple: a suggested password and a sentence
+
+        >>> GeneratePassword().new_common_diceware_password()
+        ('rive2sidelauraarchitectss!mplytheOreticalassessMeNt$', [('Mynheer', False), (',', False), ('Sir', False), ('Francis', False), (',', False), ('the', False), ('riverside', True), ('laura', True), (',', False), ('the', False), ('very', False), ('architects', True), ('of', False), ('the', False), ('river', False), ('on', False), ('his', False), ('right', False), ('purling', False), ('simply', True), ('to', False), ('the', False), ('bay', False), ('past', False), ('fish', False), ('weirs', False), ('and', False), ('rocks', False), (',', False), ('and', False), ('ahead', False), ('the', False), ('theoretical', True), ('assessments', True)])
+        """
+        keywords = [self.word_tool.get_random_common_word() for _ in range(number_of_words)]
+        password = self.conformizer.conformize(''.join(keywords))
+        if hint:
+            keywords = [hint] + keywords
         return password, self.to_sentence.from_keywords(keywords)
 
     @staticmethod
@@ -107,7 +126,7 @@ class NewPassword:
         :param float refresh_timeout: timeout to new sentence
         :return str: a string of digits
 
-        >>> NewPassword().new_pin()
+        >>> GeneratePassword().new_pin()
         ('32700', [('His', False), ('mouth', True), ('was', False), ('open', False), (',', False), ('his', False), ('neck', True), ('corded', True), ('with', False), ('the', False), ('strain', True), ('of', False), ('his', False), ('screams', True)])
         """
         self.refresh(count_common=min_length, min_common=min_common, timeout=refresh_timeout)
@@ -152,17 +171,12 @@ class NewPassword:
             if is_overlap:
                 index += 1
 
-
-class GeneratePassword(NewPassword):
-    def __init__(self, do_markovify=True):
-        super().__init__(do_markovify=do_markovify)
-
-    def generate(self, password_from, password_type, password_material):
+    def generate(self, password_from, password_type, password_material, hint=''):
         if password_from == 'random':
             if password_type == 'initials':
                 tagged_password = self.new_initial_password()
             elif password_type == 'diceware':
-                tagged_password = self.new_diceware_password()
+                tagged_password = self.new_common_diceware_password(hint=hint)
             else:
                 tagged_password = self.new_pin()
 

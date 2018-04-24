@@ -7,7 +7,8 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-install_requires = ['nltk', 'PyYAML', 'markovify', 'flask']
+related_projects = ['randomsentence', 'passwordstrength', 'pronounceable']
+install_requires = ['nltk', 'PyYAML', 'markovify', 'flask'] + related_projects
 android_requires = ['kivy']
 pytest_requires = ['xdist', 'repeat', 'timeout', 'doctestplus']
 tests_require = ['pytest'] + ['pytest-{}'.format(req) for req in pytest_requires]
