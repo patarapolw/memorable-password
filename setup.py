@@ -55,7 +55,7 @@ setup(
     python_requires='>=3',
     tests_require=pytest_requires,
     extras_require={  # Optional
-        'test': ['tox'] + pytest_requires,
+        'tests': ['tox'] + tests_require,
         'android': android_requires,
         'heroku': ['gunicorn'],  # and *.pkl
         'with-language-check': ['language-check']
