@@ -10,7 +10,7 @@ with open(path.join(here, 'README.md'), encoding='utf-8') as f:
 related_projects = ['git+https://github.com/patarapolw/randomsentence.git',
                     'git+https://github.com/patarapolw/passwordstrength.git',
                     'git+https://github.com/patarapolw/pronounceable.git']
-install_requires = ['nltk', 'PyYAML', 'markovify', 'flask'] + related_projects
+install_requires = ['nltk', 'PyYAML', 'markovify', 'flask']
 android_requires = ['kivy']
 pytest_requires = ['xdist', 'repeat', 'timeout', 'doctestplus']
 tests_require = ['pytest'] + ['pytest-{}'.format(req) for req in pytest_requires]
@@ -51,6 +51,7 @@ setup(
     keywords='random sentence random_sentence random_word password nltk',  # Optional
     packages=find_packages(exclude=['tests']),  # Required
     install_requires=install_requires,  # Optional
+    dependency_links=related_projects,
     python_requires='>=3',
     tests_require=pytest_requires,
     extras_require={  # Optional
