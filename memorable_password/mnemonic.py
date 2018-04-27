@@ -33,9 +33,9 @@ class Mnemonic:
         >>> Mnemonic().word_to_key('major_system', 'hello')
         '8'
         >>> Mnemonic().word_to_key('major_system', 'Hello')
-        ''
+
         >>> Mnemonic().word_to_key('major_system', '8')
-        ''
+
         """
         for k, v in self.mnemonic[system].items():
             for starter in v:

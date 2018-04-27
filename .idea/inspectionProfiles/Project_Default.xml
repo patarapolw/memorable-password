@@ -4,7 +4,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="35">
+          <list size="64">
             <item index="0" class="java.lang.String" itemvalue="markovify" />
             <item index="1" class="java.lang.String" itemvalue="textblob" />
             <item index="2" class="java.lang.String" itemvalue="bs4" />
@@ -40,6 +40,35 @@
             <item index="32" class="java.lang.String" itemvalue="leetpass" />
             <item index="33" class="java.lang.String" itemvalue="idna" />
             <item index="34" class="java.lang.String" itemvalue="rq" />
+            <item index="35" class="java.lang.String" itemvalue="metaphone" />
+            <item index="36" class="java.lang.String" itemvalue="duendecat" />
+            <item index="37" class="java.lang.String" itemvalue="appdirs" />
+            <item index="38" class="java.lang.String" itemvalue="altgraph" />
+            <item index="39" class="java.lang.String" itemvalue="greenlet" />
+            <item index="40" class="java.lang.String" itemvalue="pew" />
+            <item index="41" class="java.lang.String" itemvalue="asn1crypto" />
+            <item index="42" class="java.lang.String" itemvalue="ptyprocess" />
+            <item index="43" class="java.lang.String" itemvalue="cffi" />
+            <item index="44" class="java.lang.String" itemvalue="cryptography" />
+            <item index="45" class="java.lang.String" itemvalue="Metaphone" />
+            <item index="46" class="java.lang.String" itemvalue="et-xmlfile" />
+            <item index="47" class="java.lang.String" itemvalue="pexpect" />
+            <item index="48" class="java.lang.String" itemvalue="pycparser" />
+            <item index="49" class="java.lang.String" itemvalue="jdcal" />
+            <item index="50" class="java.lang.String" itemvalue="eventlet" />
+            <item index="51" class="java.lang.String" itemvalue="pronounceable" />
+            <item index="52" class="java.lang.String" itemvalue="Pygments" />
+            <item index="53" class="java.lang.String" itemvalue="pyOpenSSL" />
+            <item index="54" class="java.lang.String" itemvalue="sh" />
+            <item index="55" class="java.lang.String" itemvalue="colorama" />
+            <item index="56" class="java.lang.String" itemvalue="macholib" />
+            <item index="57" class="java.lang.String" itemvalue="docutils" />
+            <item index="58" class="java.lang.String" itemvalue="modulegraph" />
+            <item index="59" class="java.lang.String" itemvalue="sip" />
+            <item index="60" class="java.lang.String" itemvalue="virtualenv-clone" />
+            <item index="61" class="java.lang.String" itemvalue="virtualenv" />
+            <item index="62" class="java.lang.String" itemvalue="web-cache" />
+            <item index="63" class="java.lang.String" itemvalue="websocket-client" />
           </list>
         </value>
       </option>

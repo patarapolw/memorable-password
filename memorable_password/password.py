@@ -11,7 +11,8 @@ from memorable_password.mnemonic import Mnemonic, InitialSoftener
 from memorable_password.policy import Conformize
 from memorable_password.sentence import ToSentence
 
-__doctest_skip__ = ['PasswordGenerator.refresh', 'PasswordGenerator.new_password', 'PasswordGenerator.new_pin']
+__doctest_skip__ = ['GeneratePassword.refresh', 'GeneratePassword.new_diceware_password',
+                    'GeneratePassword.new_common_diceware_password', 'GeneratePassword.new_pin']
 
 
 class GeneratePassword:

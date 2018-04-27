@@ -10,6 +10,8 @@ except ImportError:
 
 from memorable_password.dir import database_path
 
+__doctest_skip__ = ['Conformize.conformize']
+
 
 class Conformize:
     def __init__(self):
