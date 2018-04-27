@@ -53,9 +53,9 @@ setup(
     install_requires=install_requires,  # Optional
     dependency_links=related_projects,
     python_requires='>=3.5',
-    tests_require=pytest_requires,
+    tests_require=tests_require,
     extras_require={  # Optional
-        'tests': ['tox'] + tests_require,
+        'tests': tests_require,
         'android': android_requires,
         'heroku': ['gunicorn'],  # and *.pkl
         'with-language-check': ['language-check']
