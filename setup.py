@@ -7,17 +7,16 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-related_projects = ['git+https://github.com/patarapolw/randomsentence.git#egg=randomsentence',
-                    'git+https://github.com/patarapolw/passwordstrength.git#egg=passwordstrength',
-                    'git+https://github.com/patarapolw/pronounceable.git#egg=pronounceable']
-install_requires = ['nltk', 'PyYAML', 'markovify', 'flask']
+install_requires = ['nltk', 'PyYAML', 'markovify', 'randomsentence']
 android_requires = ['kivy']
+web_requires = ['flask']
 pytest_requires = ['xdist', 'repeat', 'timeout', 'doctestplus']
-tests_require = ['pytest'] + ['pytest-{}'.format(req) for req in pytest_requires]
+tests_require = ['pytest', 'passwordstrength', 'pronounceable'] \
+                + ['pytest-{}'.format(req) for req in pytest_requires]
 
 setup(
     name='memorable_password',  # Required
-    version='0.2.0',  # Required
+    version='0.2.1',  # Required
     description='Generate sentence of context, along with keywords/PIN/passwords '
                 'to make sure you memorize it!!!',  # Required
     long_description=long_description,  # Optional
@@ -25,39 +24,33 @@ setup(
     url='https://github.com/patarapolw/memorable-password',  # Optional
     author='Pacharapol Withayasakpunt',  # Optional
     author_email='patarapolw@gmail.com',  # Optional
-    # classifiers=[  # Optional
-    #     # How mature is this project? Common values are
-    #     #   3 - Alpha
-    #     #   4 - Beta
-    #     #   5 - Production/Stable
-    #     'Development Status :: 3 - Alpha',
-    #
-    #     # Indicate who your project is intended for
-    #     'Intended Audience :: Developers',
-    #     'Topic :: Software Development :: Build Tools',
-    #
-    #     # Pick your license as you wish
-    #     'License :: OSI Approved :: MIT License',
-    #
-    #     # Specify the Python versions you support here. In particular, ensure
-    #     # that you indicate whether you support Python 2, Python 3 or both.
-    #     'Programming Language :: Python :: 2',
-    #     'Programming Language :: Python :: 2.7',
-    #     'Programming Language :: Python :: 3',
-    #     'Programming Language :: Python :: 3.4',
-    #     'Programming Language :: Python :: 3.5',
-    #     'Programming Language :: Python :: 3.6',
-    # ],
+    classifiers=[
+        'Development Status :: 4 - Beta',
+        'Environment :: Console',
+        'Environment :: Web Environment',
+        'Environment :: Handhelds/PDA\'s',
+        'Framework :: Flask',
+        'Intended Audience :: Developers',
+        'Intended Audience :: End Users/Desktop',
+        'License :: OSI Approved :: Apache Software License',
+        'Natural Language :: English',
+        'Operating System :: Android',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3.5',
+        'Programming Language :: Python :: 3.6',
+        'Topic :: Security :: Cryptography',
+        'Topic :: Software Development :: Libraries :: Python Modules',
+    ],
     keywords='random sentence random_sentence random_word password nltk',  # Optional
-    packages=find_packages(exclude=['tests']),  # Required
+    packages=find_packages(exclude=['analysis', 'dev', 'tests']),  # Required
     install_requires=install_requires,  # Optional
-    dependency_links=related_projects,
     python_requires='>=3.5',
     tests_require=tests_require,
     extras_require={  # Optional
         'tests': tests_require,
         'android': android_requires,
-        'heroku': ['gunicorn'],  # and *.pkl
+        'web': web_requires,
+        'heroku': web_requires + ['gunicorn'],  # and *.pkl
         'with-language-check': ['language-check']
     },
     package_data={  # Optional

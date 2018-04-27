@@ -28,6 +28,9 @@ pytest-doctestplus = "*"
 "d4a76af" = {file = "https://github.com/kivy/kivy/archive/master.zip"}
 pygame = "*"
 pillow = "*"
+setuptools = ">=38.6.0"
+wheel = ">=0.31.0"
+twine = ">=1.11.0"
 
 
 [requires]
