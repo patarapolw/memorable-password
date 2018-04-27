@@ -26,7 +26,10 @@ pytest-repeat = "*"
 pytest-timeout = "*"
 pytest-doctestplus = "*"
 "d4a76af" = {file = "https://github.com/kivy/kivy/archive/master.zip"}
+pygame = "*"
+pillow = "*"
 
 
 [requires]
+
 python_version = "3.6"
