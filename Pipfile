@@ -7,57 +7,26 @@ name = "pypi"
 
 [packages]
 
-altgraph = "==0.15"
-"asn1crypto" = "==0.24.0"
-attrs = "==17.4.0"
-certifi = "==2018.1.18"
-cffi = "==1.11.5"
-chardet = "==3.0.4"
-click = "==6.7"
-colorama = "==0.3.9"
-cryptography = "==2.2.2"
-docutils = "==0.14"
-et-xmlfile = "==1.0.1"
-eventlet = "==0.22.1"
-flask = "*"
-greenlet = "==0.4.13"
-gunicorn = "==19.7.1"
-idna = "==2.6"
-itsdangerous = "==0.24"
-jdcal = "==1.3"
-"jinja2" = "==2.10"
-macholib = "==1.9"
-markovify = "*"
-markupsafe = "==1.0"
-metaphone = "==0.6"
-modulegraph = "==0.16"
-more-itertools = "==4.1.0"
 nltk = "*"
-numpy = "==1.14.2"
-passwordstrength = {git = "https://github.com/patarapolw/passwordstrength.git", editable = true, ref = "b1ab50af0095e953fd2e64ee430a74990e08273a"}
-pew = "==1.1.2"
-pexpect = "==4.5.0"
-pipenv = "==10.1.0"
-pluggy = "==0.6.0"
-pronounceable = {git = "https://github.com/patarapolw/pronounceable.git", editable = true, ref = "e87425d00f60253fa44164c496ff44c93ff5fa1a"}
-ptyprocess = "==0.5.2"
-py = "==1.5.3"
-pycparser = "==2.18"
-pygments = "==2.2.0"
-pyopenssl = "==17.5.0"
 pyyaml = "*"
-randomsentence = {git = "https://github.com/patarapolw/randomsentence.git", editable = true, ref = "6edeff33f51d65653566ae4ba9433303cdfeba5a"}
-sh = "==1.12.4"
-sip = "==4.19.8"
-unidecode = "==1.0.22"
-"urllib3" = "==1.22"
-virtualenv = "==15.1.0"
-virtualenv-clone = "==0.2.6"
-web-cache = "==1.0.2"
-websocket-client = "==0.47.0"
-werkzeug = "==0.14.1"
-cython = "*"
+markovify = "*"
+flask = "*"
+randomsentence = {git = "https://github.com/patarapolw/randomsentence.git", editable = true}
+gunicorn = "*"
 
 
 [dev-packages]
 
+cython = "==0.25.2"
+passwordstrength = {git = "https://github.com/patarapolw/passwordstrength.git", editable = true}
+pronounceable = {git = "https://github.com/patarapolw/pronounceable.git", editable = true}
+pytest = "*"
+pytest-xdist = "*"
+pytest-repeat = "*"
+pytest-timeout = "*"
+pytest-doctestplus = "*"
+"d4a76af" = {file = "https://github.com/kivy/kivy/archive/master.zip"}
+
+
+[requires]
+python_version = "3.6"

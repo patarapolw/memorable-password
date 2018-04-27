@@ -7,9 +7,9 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-related_projects = ['git+https://github.com/patarapolw/randomsentence.git',
-                    'git+https://github.com/patarapolw/passwordstrength.git',
-                    'git+https://github.com/patarapolw/pronounceable.git']
+related_projects = ['git+https://github.com/patarapolw/randomsentence.git#egg=randomsentence',
+                    'git+https://github.com/patarapolw/passwordstrength.git#egg=passwordstrength',
+                    'git+https://github.com/patarapolw/pronounceable.git#egg=pronounceable']
 install_requires = ['nltk', 'PyYAML', 'markovify', 'flask']
 android_requires = ['kivy']
 pytest_requires = ['xdist', 'repeat', 'timeout', 'doctestplus']

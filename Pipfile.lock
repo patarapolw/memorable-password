@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "97e6d386c3a062c1ef5a9a44133c1b13bba23aedbd33ebc2367d9aa342e9df11"
+            "sha256": "385918b3449c7f3845bbc592b909c2717eafda17633ab6b545ab8b012b5ba775"
         },
         "host-environment-markers": {
             "implementation_name": "cpython",
@@ -17,7 +17,9 @@
             "sys_platform": "darwin"
         },
         "pipfile-spec": 6,
-        "requires": {},
+        "requires": {
+            "python_version": "3.6"
+        },
         "sources": [
             {
                 "name": "pypi",
@@ -34,16 +36,19 @@
             ],
             "version": "==6.7"
         },
-        "e1839a8": {
-            "editable": true,
-            "path": "."
-        },
         "flask": {
             "hashes": [
                 "sha256:b1883637bbee4dc7bc98d900792d0a304d609fce0f5bd9ca91d1b6457e5918dd",
                 "sha256:7fab1062d11dd0038434e790d18c5b9133fd9e6b7257d707c4578ccc1e38b67c"
             ],
             "version": "==1.0"
+        },
+        "gunicorn": {
+            "hashes": [
+                "sha256:75af03c99389535f218cc596c7de74df4763803f7b63eb09d77e92b3956b36c6",
+                "sha256:eee1169f0ca667be05db3351a0960765620dad53f53434262ff8901b68a1b622"
+            ],
+            "version": "==19.7.1"
         },
         "itsdangerous": {
             "hashes": [
@@ -77,6 +82,235 @@
             ],
             "version": "==3.2.5"
         },
+        "passwordstrength": {
+            "editable": true,
+            "git": "https://github.com/patarapolw/passwordstrength.git",
+            "ref": "77a8ac35a6e7c414a7ea2c9fb2dc499d0817bd6c"
+        },
+        "pronounceable": {
+            "editable": true,
+            "git": "https://github.com/patarapolw/pronounceable.git",
+            "ref": "bdaf72b990d4de012b3ca10f29c2e2a16e63c151"
+        },
+        "pyyaml": {
+            "hashes": [
+                "sha256:3262c96a1ca437e7e4763e2843746588a965426550f3797a79fca9c6199c431f",
+                "sha256:16b20e970597e051997d90dc2cddc713a2876c47e3d92d59ee198700c5427736",
+                "sha256:e863072cdf4c72eebf179342c94e6989c67185842d9997960b3e69290b2fa269",
+                "sha256:bc6bced57f826ca7cb5125a10b23fd0f2fff3b7c4701d64c439a300ce665fff8",
+                "sha256:c01b880ec30b5a6e6aa67b09a2fe3fb30473008c85cd6a67359a1b15ed6d83a4",
+                "sha256:827dc04b8fa7d07c44de11fabbc888e627fa8293b695e0f99cb544fdfa1bf0d1",
+                "sha256:592766c6303207a20efc445587778322d7f73b161bd994f227adaa341ba212ab",
+                "sha256:5f84523c076ad14ff5e6c037fe1c89a7f73a3e04cf0377cb4d017014976433f3",
+                "sha256:0c507b7f74b3d2dd4d1322ec8a94794927305ab4cebbe89cc47fe5e81541e6e8",
+                "sha256:b4c423ab23291d3945ac61346feeb9a0dc4184999ede5e7c43e1ffb975130ae6",
+                "sha256:ca233c64c6e40eaa6c66ef97058cdc80e8d0157a443655baa1b2966e812807ca",
+                "sha256:4474f8ea030b5127225b8894d626bb66c01cda098d47a2b0d3429b6700af9fd8",
+                "sha256:326420cbb492172dec84b0f65c80942de6cedb5233c413dd824483989c000608",
+                "sha256:5ac82e411044fb129bae5cfbeb3ba626acb2af31a8d17d175004b70862a741a7"
+            ],
+            "version": "==3.12"
+        },
+        "randomsentence": {
+            "editable": true,
+            "git": "https://github.com/patarapolw/randomsentence.git",
+            "ref": "c552273271b00ca4ef95d7b3cd4222fb17d90b8d"
+        },
+        "six": {
+            "hashes": [
+                "sha256:832dc0e10feb1aa2c68dcc57dbb658f1c7e65b9b61af69048abc87a2db00a0eb",
+                "sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
+            ],
+            "version": "==1.11.0"
+        },
+        "unidecode": {
+            "hashes": [
+                "sha256:72f49d3729f3d8f5799f710b97c1451c5163102e76d64d20e170aedbbd923582",
+                "sha256:8c33dd588e0c9bc22a76eaa0c715a5434851f726131bd44a6c26471746efabf5"
+            ],
+            "version": "==1.0.22"
+        },
+        "werkzeug": {
+            "hashes": [
+                "sha256:d5da73735293558eb1651ee2fddc4d0dedcfa06538b8813a2e20011583c9e49b",
+                "sha256:c3fd7a7d41976d9f44db327260e263132466836cef6f91512889ed60ad26557c"
+            ],
+            "version": "==0.14.1"
+        }
+    },
+    "develop": {
+        "apipkg": {
+            "hashes": [
+                "sha256:65d2aa68b28e7d31233bb2ba8eb31cda40e4671f8ac2d6b241e358c9652a74b9",
+                "sha256:2e38399dbe842891fe85392601aab8f40a8f4cc5a9053c326de35a1cc0297ac6"
+            ],
+            "version": "==1.4"
+        },
+        "attrs": {
+            "hashes": [
+                "sha256:a17a9573a6f475c99b551c0e0a812707ddda1ec9653bed04c13841404ed6f450",
+                "sha256:1c7960ccfd6a005cd9f7ba884e6316b5e430a3f1a6c37c5f87d8b43f83b54ec9"
+            ],
+            "version": "==17.4.0"
+        },
+        "cython": {
+            "hashes": [
+                "sha256:9ab170d1ab65b6e58cddefe2d3d4545891d99a9ec58f2d9ff2054bba5cf1e7b4",
+                "sha256:61731d93af1388b5adb1ea9fe485aba62331e7c387e1f3d67639d0649a378c70",
+                "sha256:d85417af8bf6add9f1f41b5918acf9da2701e252234092a6dbec6c6a2236341d",
+                "sha256:87c2d19ff56276ba67083e2466516c4b8a787ab15d5562dadc57f43fa2f4c547",
+                "sha256:335d5afed98960937257b0b113e5898060cc3e79ed7c28adfb289d55ca0eb017",
+                "sha256:308896331c85547b4bf3da940000dbc03e6a28ef38a292508c57414701839601",
+                "sha256:43a9eafa95b021229550b70de6bfc3cce2e198513dcc8ffd55f4916b50d25aea",
+                "sha256:185cf9b99164d1afce462c685f0edde99015d909e15763494dffe2b47fd4cbcb",
+                "sha256:f01e03638423dcd1555f5fccc67a9adce4aec99e645eee01f43ea091c5844053",
+                "sha256:16210e8b3e64b3d6b27ce4f0d53e78640e91a5e0a8d1d739adbf75b5eb698871",
+                "sha256:a4d7cac05f411e71b6b6e812f781da20665add998b0a9a3ed98ef1b66e3f0b79",
+                "sha256:51b3dd45cd311fd05bab71c114349c329fceb21d47481440d534d9e02d2e9167",
+                "sha256:25f7ac45b8bf06739ecd22186c5405e62832564586dfc33fc620e35477c29d2c",
+                "sha256:50edcb346e6d4f4b4881d3c473cb804ea7b9fe910f9f6308cf89b684eae8fc64",
+                "sha256:d65b60db3f7e57e0c2afcbb0e94845cf8a10fdd2920f37cbd032f24040d7ae02",
+                "sha256:6f30bd0c9a1b1fe2ef38d530431d0efbd46bfb3ea681c7c14ab8054c571c9ab7",
+                "sha256:6464f875934483fc7be1dc6663a191ba306a2c3d4041f555be917f83b1b7009e",
+                "sha256:8c42126986cdc0186139487f97bcaa0835634ebe4ea64a548c9591751a508148",
+                "sha256:6c008b7eda7da74bd222d88923e9381f25cd235958333a6da454f60ced634a6f",
+                "sha256:b1c8f489e5ce9c961bff89f8d3e84e8f4da366e0c7aae81f46ec6401446ef8ff",
+                "sha256:e2928580127a43a616565aeb354a6cdcf8ae72829852d2298c517dfc322e7347",
+                "sha256:4983354d35f14decdf9bea85e54e5dcaa06967a3b016cac3ea2c9d4d2cbc4146",
+                "sha256:12efb3c1b221a99a9bfac206cd687f4ba3a0dd8f186cbf64785cef6517fd3147",
+                "sha256:475fd6ca6e59a64442fe0926a82eaaeb8474f8eb0dca0f3fc09f8e4f7ef26b5f",
+                "sha256:1f4b1408bd2c5c24ac6313c82843313c677072f0dea0c041019669a10b194ca3",
+                "sha256:cf6ce3f98b90817c53014ded2d1792cabfcf8a042aa4c0e6088598acc3141790",
+                "sha256:d6b7863c59dd9e149a2b3583d47990834c9d36be153735d43997d0ff1e80d89c",
+                "sha256:f141d1f9c27a07b5a93f7dc5339472067e2d7140d1c5a9e20112a5665ca60306"
+            ],
+            "version": "==0.25.2"
+        },
+        "d4a76af": {
+            "file": "https://github.com/kivy/kivy/archive/master.zip"
+        },
+        "execnet": {
+            "hashes": [
+                "sha256:fc155a6b553c66c838d1a22dba1dc9f5f505c43285a878c6f74a79c024750b83",
+                "sha256:a7a84d5fa07a089186a329528f127c9d73b9de57f1a1131b82bb5320ee651f6a"
+            ],
+            "version": "==1.5.0"
+        },
+        "metaphone": {
+            "hashes": [
+                "sha256:ad0beadca66cb7ec6ede71ef72bb02da097c493ddf159930d6340bc83f53da27"
+            ],
+            "version": "==0.6"
+        },
+        "more-itertools": {
+            "hashes": [
+                "sha256:11a625025954c20145b37ff6309cd54e39ca94f72f6bb9576d1195db6fa2442e",
+                "sha256:0dd8f72eeab0d2c3bd489025bb2f6a1b8342f9b198f6fc37b52d15cfa4531fea",
+                "sha256:c9ce7eccdcb901a2c75d326ea134e0886abfbea5f93e91cc95de9507c0816c44"
+            ],
+            "version": "==4.1.0"
+        },
+        "nltk": {
+            "hashes": [
+                "sha256:2661f9971d983db314bbebd51ba770811a362c6597fd0f303bb1d3beadcb4834",
+                "sha256:8a3bad9ff7f67d2828a7915c2fab93e6ca910c2015ef40799e1805fccf2354e5"
+            ],
+            "version": "==3.2.5"
+        },
+        "numpy": {
+            "hashes": [
+                "sha256:719d914f564f35cce4dc103808f8297c807c9f0297ac183ed81ae8b5650e698e",
+                "sha256:0f6a5ed0cd7ab1da11f5c07a8ecada73fc55a70ef7bb6311a4109891341d7277",
+                "sha256:d0928076d9bd8a98de44e79b1abe50c1456e7abbb40af7ef58092086f1a6c729",
+                "sha256:d858423f5ed444d494b15c4cc90a206e1b8c31354c781ac7584da0d21c09c1c3",
+                "sha256:20cac3123d791e4bf8482a580d98d6b5969ba348b9d5364df791ba3a666b660d",
+                "sha256:528ce59ded2008f9e8543e0146acb3a98a9890da00adf8904b1e18c82099418b",
+                "sha256:56e392b7c738bd70e6f46cf48c8194d3d1dd4c5a59fae4b30c58bb6ef86e5233",
+                "sha256:99051e03b445117b26028623f1a487112ddf61a09a27e2d25e6bc07d37d94f25",
+                "sha256:768e777cc1ffdbf97c507f65975c8686ebafe0f3dc8925d02ac117acc4669ce9",
+                "sha256:675e0f23967ce71067d12b6944add505d5f0a251f819cfb44bdf8ee7072c090d",
+                "sha256:a958bf9d4834c72dee4f91a0476e7837b8a2966dc6fcfc42c421405f98d0da51",
+                "sha256:bb370120de6d26004358611441e07acda26840e41dfedc259d7f8cc613f96495",
+                "sha256:f2b1378b63bdb581d5d7af2ec0373c8d40d651941d283a2afd7fc71184b3f570",
+                "sha256:a1413d06abfa942ca0553bf3bccaff5fdb36d55b84f2248e36228db871147dab",
+                "sha256:7f76d406c6b998d6410198dcb82688dcdaec7d846aa87e263ccf52efdcfeba30",
+                "sha256:a7157c9ac6bddd2908c35ef099e4b643bc0e0ebb4d653deb54891d29258dd329",
+                "sha256:0fd65cbbfdbf76bbf80c445d923b3accefea0fe2c2082049e0ce947c81fe1d3f",
+                "sha256:8c18ee4dddd5c6a811930c0a7c7947bf16387da3b394725f6063f1366311187d",
+                "sha256:0739146eaf4985962f07c62f7133aca89f3a600faac891ce6c7f3a1e2afe5272",
+                "sha256:07e21f14490324cc1160db101e9b6c1233c33985af4cb1d301dd02650fea1d7f",
+                "sha256:e6120d63b50e2248219f53302af7ec6fa2a42ed1f37e9cda2c76dbaca65036a7",
+                "sha256:6be6b0ca705321c178c9858e5ad5611af664bbdfae1df1541f938a840a103888",
+                "sha256:facc6f925c3099ac01a1f03758100772560a0b020fb9d70f210404be08006bcb"
+            ],
+            "version": "==1.14.2"
+        },
+        "passwordstrength": {
+            "editable": true,
+            "git": "https://github.com/patarapolw/passwordstrength.git",
+            "ref": "77a8ac35a6e7c414a7ea2c9fb2dc499d0817bd6c"
+        },
+        "pluggy": {
+            "hashes": [
+                "sha256:d345c8fe681115900d6da8d048ba67c25df42973bda370783cd58826442dcd7c",
+                "sha256:e160a7fcf25762bb60efc7e171d4497ff1d8d2d75a3d0df7a21b76821ecbf5c5",
+                "sha256:7f8ae7f5bdf75671a718d2daf0a64b7885f74510bcd98b1a0bb420eb9a9d0cff"
+            ],
+            "version": "==0.6.0"
+        },
+        "pronounceable": {
+            "editable": true,
+            "git": "https://github.com/patarapolw/pronounceable.git",
+            "ref": "bdaf72b990d4de012b3ca10f29c2e2a16e63c151"
+        },
+        "py": {
+            "hashes": [
+                "sha256:983f77f3331356039fdd792e9220b7b8ee1aa6bd2b25f567a963ff1de5a64f6a",
+                "sha256:29c9fab495d7528e80ba1e343b958684f4ace687327e6f789a94bf3d1915f881"
+            ],
+            "version": "==1.5.3"
+        },
+        "pytest": {
+            "hashes": [
+                "sha256:829230122facf05a5f81a6d4dfe6454a04978ea3746853b2b84567ecf8e5c526",
+                "sha256:54713b26c97538db6ff0703a12b19aeaeb60b5e599de542e7fca0ec83b9038e8"
+            ],
+            "version": "==3.5.1"
+        },
+        "pytest-doctestplus": {
+            "hashes": [
+                "sha256:91a5f81ff9e2038d363f6d49f4ec3c1b9726cc989ae8e3f227689a3793aa51fc"
+            ],
+            "version": "==0.1.3"
+        },
+        "pytest-forked": {
+            "hashes": [
+                "sha256:f275cb48a73fc61a6710726348e1da6d68a978f0ec0c54ece5a5fae5977e5a08",
+                "sha256:e4500cd0509ec4a26535f7d4112a8cc0f17d3a41c29ffd4eab479d2a55b30805"
+            ],
+            "version": "==0.2"
+        },
+        "pytest-repeat": {
+            "hashes": [
+                "sha256:5eb775a6ffc76eab980a7f9fce433a1cc3edf091545ae558a9ab8d88a0f07d00",
+                "sha256:9fc2cc37be87212c5d98e92723cf26bc72d86159bf6c1bafc176270245867c51"
+            ],
+            "version": "==0.4.1"
+        },
+        "pytest-timeout": {
+            "hashes": [
+                "sha256:142739bc1f0687fccb0f013d36c5bbebd0b14b546404e79f4158010e81e5013b",
+                "sha256:68b7d264633d5d33ee6b14ce3a7f7d05f8fd9d2f6ae594283221ec021736b7cd"
+            ],
+            "version": "==1.2.1"
+        },
+        "pytest-xdist": {
+            "hashes": [
+                "sha256:be2662264b035920ba740ed6efb1c816a83c8a22253df7766d129f6a7bfdbd35",
+                "sha256:e8f5744acc270b3e7d915bdb4d5f471670f049b6fbd163d4cbd52203b075d30f"
+            ],
+            "version": "==1.22.2"
+        },
         "pyyaml": {
             "hashes": [
                 "sha256:3262c96a1ca437e7e4763e2843746588a965426550f3797a79fca9c6199c431f",
@@ -102,26 +336,6 @@
                 "sha256:70e8a77beed4562e7f14fe23a786b54f6296e34344c23bc42f07b15018ff98e9"
             ],
             "version": "==1.11.0"
-        },
-        "unidecode": {
-            "hashes": [
-                "sha256:72f49d3729f3d8f5799f710b97c1451c5163102e76d64d20e170aedbbd923582",
-                "sha256:8c33dd588e0c9bc22a76eaa0c715a5434851f726131bd44a6c26471746efabf5"
-            ],
-            "version": "==1.0.22"
-        },
-        "werkzeug": {
-            "hashes": [
-                "sha256:d5da73735293558eb1651ee2fddc4d0dedcfa06538b8813a2e20011583c9e49b",
-                "sha256:c3fd7a7d41976d9f44db327260e263132466836cef6f91512889ed60ad26557c"
-            ],
-            "version": "==0.14.1"
-        }
-    },
-    "develop": {
-        "e1839a8": {
-            "editable": true,
-            "path": "."
         }
     }
 }
