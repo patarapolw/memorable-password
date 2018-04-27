@@ -16,7 +16,7 @@ tests_require = ['pytest', 'passwordstrength', 'pronounceable'] \
 
 setup(
     name='memorable_password',  # Required
-    version='0.2.1',  # Required
+    version='0.2.3',  # Required
     description='Generate sentence of context, along with keywords/PIN/passwords '
                 'to make sure you memorize it!!!',  # Required
     long_description=long_description,  # Optional
@@ -24,6 +24,7 @@ setup(
     url='https://github.com/patarapolw/memorable-password',  # Optional
     author='Pacharapol Withayasakpunt',  # Optional
     author_email='patarapolw@gmail.com',  # Optional
+    license='Apache',
     classifiers=[
         'Development Status :: 4 - Beta',
         'Environment :: Console',

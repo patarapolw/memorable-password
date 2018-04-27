@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/patarapolw/memorable-password.svg?branch=master)](https://travis-ci.org/patarapolw/memorable-password)
 [![PyPI version shields.io](https://img.shields.io/pypi/v/memorable_password.svg)](https://pypi.python.org/pypi/memorable_password/)
+[![PyPI license](https://img.shields.io/pypi/l/memorable_password.svg)](https://pypi.python.org/pypi/memorable_password/)
 [![PyPI pyversions](https://img.shields.io/pypi/pyversions/memorable_password.svg)](https://pypi.python.org/pypi/memorable_password/)
 [![PyPI status](https://img.shields.io/pypi/status/memorable_password.svg)](https://pypi.python.org/pypi/memorable_password/)
 

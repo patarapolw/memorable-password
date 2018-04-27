@@ -42,6 +42,9 @@ def test_new_diceware_password():
     password, overlap_list = pg.new_diceware_password()
     print(password)
 
+    if overlap_list is None:
+        return
+
     for token, is_overlap in overlap_list:
         if is_overlap:
             print(token)
