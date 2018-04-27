@@ -52,7 +52,7 @@ setup(
     packages=find_packages(exclude=['tests']),  # Required
     install_requires=install_requires,  # Optional
     dependency_links=related_projects,
-    python_requires='>=3',
+    python_requires='>=3.5',
     tests_require=pytest_requires,
     extras_require={  # Optional
         'tests': ['tox'] + tests_require,
