@@ -4,7 +4,7 @@
     <inspection_tool class="PyPackageRequirementsInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredPackages">
         <value>
-          <list size="64">
+          <list size="68">
             <item index="0" class="java.lang.String" itemvalue="markovify" />
             <item index="1" class="java.lang.String" itemvalue="textblob" />
             <item index="2" class="java.lang.String" itemvalue="bs4" />
@@ -69,6 +69,10 @@
             <item index="61" class="java.lang.String" itemvalue="virtualenv" />
             <item index="62" class="java.lang.String" itemvalue="web-cache" />
             <item index="63" class="java.lang.String" itemvalue="websocket-client" />
+            <item index="64" class="java.lang.String" itemvalue="doctestplus" />
+            <item index="65" class="java.lang.String" itemvalue="xdist" />
+            <item index="66" class="java.lang.String" itemvalue="repeat" />
+            <item index="67" class="java.lang.String" itemvalue="timeout" />
           </list>
         </value>
       </option>

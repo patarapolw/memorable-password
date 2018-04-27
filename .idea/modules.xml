@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/DictPassword.iml" filepath="$PROJECT_DIR$/.idea/DictPassword.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/memorable-password.iml" filepath="$PROJECT_DIR$/.idea/memorable-password.iml" />
     </modules>
   </component>
 </project>

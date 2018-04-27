@@ -14,8 +14,8 @@ class Mnemonic:
         :param str system: mnemonic system. Major system for numbers.
         :return list: a list of all possible starters
 
-        >>> Mnemonic().starters('major_system')
-        ['s', 'z', 'x', 't', 'th', 'n', 'm', 'r', 'l', 'd', 'c', 'k', 'g', 'q', 'b', 'h', 'v', 'w', 'p', 'f']
+        >>> sorted(Mnemonic().starters('major_system'))
+        ['b', 'c', 'd', 'f', 'g', 'h', 'k', 'l', 'm', 'n', 'p', 'q', 'r', 's', 't', 'th', 'v', 'w', 'x', 'z']
         """
         result = []
         for k, v in self.mnemonic[system].items():
