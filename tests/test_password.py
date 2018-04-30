@@ -34,25 +34,6 @@ def test_new_initial_password():
 
 
 @pytest.mark.repeat
-def test_new_diceware_password():
-    """
-    200 rep passed.
-    :return:
-    """
-    password, overlap_list = pg.new_diceware_password()
-    print(password)
-
-    if overlap_list is None:
-        return
-
-    for token, is_overlap in overlap_list:
-        if is_overlap:
-            print(token)
-        assert isinstance(token, str)
-        assert isinstance(is_overlap, bool)
-
-
-@pytest.mark.repeat
 def test_new_common_diceware_password():
     password, overlap_list = pg.new_common_diceware_password()
     print(password, overlap_list)

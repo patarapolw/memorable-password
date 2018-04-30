@@ -2,13 +2,12 @@
 Generate a new password/PIN with associated sentence.
 """
 
-from randomsentence import SentenceTool, WordTool, Brown
+from randomsentence import SentenceTool, Brown
+from diceware_utils.policy import Conformize
+from diceware_utils.wordlist import Wordlist
 from time import time
-import re
-import string
 
 from memorable_password.mnemonic import Mnemonic, InitialSoftener
-from memorable_password.policy import Conformize
 from memorable_password.sentence import ToSentence
 
 __doctest_skip__ = ['GeneratePassword.refresh', 'GeneratePassword.new_diceware_password',
@@ -18,11 +17,11 @@ __doctest_skip__ = ['GeneratePassword.refresh', 'GeneratePassword.new_diceware_p
 class GeneratePassword:
     def __init__(self, do_markovify=True):
         self.sentence_tool = SentenceTool()
-        self.word_tool = WordTool()
         self.conformizer = Conformize()
         self.mnemonic = Mnemonic()
         self.initial_softener = InitialSoftener()
         self.to_sentence = ToSentence()
+        self.wordlist = Wordlist()
 
         self.brown = Brown(do_markovify=do_markovify)
 
@@ -52,22 +51,6 @@ class GeneratePassword:
 
         raise TimeoutError
 
-    def new_diceware_password(self, number_of_words=4, hint=''):
-        """
-        Return a suggested password
-        :param int number_of_words: number of words generated
-        :param str hint:
-        :return tuple: a suggested password and a sentence
-
-        >>> GeneratePassword().new_diceware_password()
-        ('Ancho2edpastpredi$%osit!on', [('Social', False), ('process', False), ('is', False), ('always', False), ('anchored', True), ('in', False), ('past', True), ('predisposition', True)])
-        """
-        keywords = [self.word_tool.get_random_word() for _ in range(number_of_words)]
-        password = self.conformizer.conformize(''.join(keywords))
-        if hint:
-            keywords = [hint] + keywords
-        return password, self.to_sentence.from_keywords(keywords)
-
     def new_common_diceware_password(self, number_of_words=6, hint=''):
         """
         Return a suggested password
@@ -78,8 +61,8 @@ class GeneratePassword:
         >>> GeneratePassword().new_common_diceware_password()
         ('rive2sidelauraarchitectss!mplytheOreticalassessMeNt$', [('Mynheer', False), (',', False), ('Sir', False), ('Francis', False), (',', False), ('the', False), ('riverside', True), ('laura', True), (',', False), ('the', False), ('very', False), ('architects', True), ('of', False), ('the', False), ('river', False), ('on', False), ('his', False), ('right', False), ('purling', False), ('simply', True), ('to', False), ('the', False), ('bay', False), ('past', False), ('fish', False), ('weirs', False), ('and', False), ('rocks', False), (',', False), ('and', False), ('ahead', False), ('the', False), ('theoretical', True), ('assessments', True)])
         """
-        keywords = [self.word_tool.get_random_common_word() for _ in range(number_of_words)]
-        password = self.conformizer.conformize(''.join(keywords))
+        keywords = [self.wordlist.get_random_word() for _ in range(number_of_words)]
+        password = self.conformizer.conformize(keywords)
         if hint:
             keywords = [hint] + keywords
         return password, self.to_sentence.from_keywords(keywords)
@@ -188,19 +171,19 @@ class GeneratePassword:
 
         elif password_from == 'keywords':
             keywords = [keyword.strip() for keyword in password_material.replace(' ', ',').split(',')]
-            if len(keywords) < 4:
-                keywords += [self.word_tool.get_random_common_word() for _ in range(4-len(keywords))]
+            if len(keywords) < 6:
+                keywords += [self.wordlist.get_random_word() for _ in range(6-len(keywords))]
 
             tagged_sentence = self.to_sentence.from_keywords(keywords)
             if password_type in ['initials', 'diceware']:
-                password = self.conformizer.conformize(
-                    re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
+                password = self.conformizer.conformize(keywords)
             else:
                 password = ''.join([self.initial_softener.word_to_key(keyword.lower()) for keyword in keywords])
         elif password_from == 'pin':
             tagged_sentence = self.to_sentence.from_pin(password_material)
             if password_type == 'diceware':
-                password = self.conformizer.conformize(''.join([token for token, overlap in tagged_sentence if overlap]))
+                keywords = [token for token, overlap in tagged_sentence if overlap]
+                password = self.conformizer.conformize(keywords)
             else:
                 password = password_material
         else:  # from 'initials'
@@ -210,8 +193,7 @@ class GeneratePassword:
                 password = self.conformizer.conformize(initials)
             elif password_type == 'diceware':
                 keywords = [token for token, overlap in tagged_sentence if overlap]
-                password = self.conformizer.conformize(
-                    re.sub('{}'.format(re.escape(string.punctuation)), '', ''.join(keywords)))
+                password = self.conformizer.conformize(keywords)
             else:
                 password = ''.join([self.mnemonic.word_to_key('major_system', char.lower()) for char in initials])
 

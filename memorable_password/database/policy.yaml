@@ -1,4 +1,0 @@
-policy:
-  both_upper_and_lower: true
-  digit_count: 1
-  punctuation_count: 1

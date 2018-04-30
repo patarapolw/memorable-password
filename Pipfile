@@ -13,6 +13,7 @@ markovify = "*"
 flask = "*"
 randomsentence = {git = "https://github.com/patarapolw/randomsentence.git", editable = true}
 gunicorn = "*"
+diceware-utils = "*"
 
 
 [dev-packages]
