@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "e1bde143bfa8077fa85e669421afdf715c501ba52139de2e9b7cd48c5fc618bd"
+            "sha256": "951e415afb659cd96a2f62f9ac2a179459134e4c22f5f0118440675fa9c70adb"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -22,14 +22,6 @@
                 "sha256:f15516df478d5a56180fbf80e68f206010e6d160fc39fa508b65e035fd75130b"
             ],
             "version": "==6.7"
-        },
-        "diceware-utils": {
-            "hashes": [
-                "sha256:71138280282916d856454b7a50dc4d7f2075087e2f6f8405db460d5b5a4b15d2",
-                "sha256:8f8df5de0fbde3b440b38a6b968589b635ba8f7eb649a199060ceb7ac5a9fe98"
-            ],
-            "index": "pypi",
-            "version": "==0.3.1"
         },
         "flask": {
             "hashes": [
