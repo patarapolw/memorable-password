@@ -20,6 +20,7 @@ Memorable password has been tested to work with both PyDroid3 and QPython (Pytho
 
 - PyDroid3 - Kivy - See `/pydroid_run.py`
 - QPython - Flask - See `/main.py`
+- CLI app - See `cli_app/app.py`
 
 ## Related Project
 
