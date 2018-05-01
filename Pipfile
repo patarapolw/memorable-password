@@ -1,12 +1,9 @@
 [[source]]
-
 url = "https://pypi.python.org/simple"
 verify_ssl = true
 name = "pypi"
 
-
 [packages]
-
 nltk = "*"
 pyyaml = "*"
 markovify = "*"
@@ -14,10 +11,9 @@ flask = "*"
 randomsentence = {git = "https://github.com/patarapolw/randomsentence.git", editable = true}
 gunicorn = "*"
 diceware-utils = "*"
-
+password_manager = {git = "https://github.com/patarapolw/password_manager.git", editable = true}
 
 [dev-packages]
-
 cython = "==0.25.2"
 passwordstrength = {git = "https://github.com/patarapolw/passwordstrength.git", editable = true}
 pronounceable = {git = "https://github.com/patarapolw/pronounceable.git", editable = true}
@@ -29,11 +25,6 @@ pytest-doctestplus = "*"
 "d4a76af" = {file = "https://github.com/kivy/kivy/archive/master.zip"}
 pygame = "*"
 pillow = "*"
-setuptools = ">=38.6.0"
-wheel = ">=0.31.0"
-twine = ">=1.11.0"
-
 
 [requires]
-
 python_version = "3.6"
