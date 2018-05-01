@@ -23,4 +23,6 @@ Memorable password has been tested to work with both PyDroid3 and QPython (Pytho
 
 ## Related Project
 
-https://github.com/patarapolw/randomsentence
+- https://github.com/patarapolw/randomsentence
+- https://github.com/patarapolw/password_manager
+- https://github.com/patarapolw/diceware_utils
