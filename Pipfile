@@ -7,14 +7,11 @@ name = "pypi"
 nltk = "*"
 pyyaml = "*"
 markovify = "*"
-flask = "*"
 randomsentence = {git = "https://github.com/patarapolw/randomsentence.git", editable = true}
-gunicorn = "*"
 password_manager = {git = "https://github.com/patarapolw/password_manager.git", editable = true}
 diceware_utils = {git = "https://github.com/patarapolw/diceware_utils.git", editable = true}
 
 [dev-packages]
-cython = "==0.25.2"
 passwordstrength = {git = "https://github.com/patarapolw/passwordstrength.git", editable = true}
 pronounceable = {git = "https://github.com/patarapolw/pronounceable.git", editable = true}
 pytest = "*"
@@ -22,9 +19,7 @@ pytest-xdist = "*"
 pytest-repeat = "*"
 pytest-timeout = "*"
 pytest-doctestplus = "*"
-"d4a76af" = {file = "https://github.com/kivy/kivy/archive/master.zip"}
-pygame = "*"
-pillow = "*"
+gunicorn = "*"
 
 [requires]
 python_version = "3.6"

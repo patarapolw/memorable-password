@@ -7,8 +7,7 @@ here = path.abspath(path.dirname(__file__))
 with open(path.join(here, 'README.md'), encoding='utf-8') as f:
     long_description = f.read()
 
-install_requires = ['nltk', 'PyYAML', 'markovify', 'randomsentence', 'diceware_utils']
-android_requires = ['kivy']
+install_requires = ['nltk', 'PyYAML', 'markovify', 'randomsentence', 'diceware_utils', 'password_manager']
 web_requires = ['flask']
 pytest_requires = ['xdist', 'repeat', 'timeout', 'doctestplus']
 tests_require = ['pytest', 'passwordstrength', 'pronounceable'] \
@@ -49,7 +48,6 @@ setup(
     tests_require=tests_require,
     extras_require={  # Optional
         'tests': tests_require,
-        'android': android_requires,
         'web': web_requires,
         'heroku': web_requires + ['gunicorn'],  # and *.pkl
         'with-language-check': ['language-check']

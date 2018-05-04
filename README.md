@@ -8,7 +8,13 @@
 
 Generate sentence of context, along with keywords/PIN/passwords to make sure you memorize it!!!
 
-PIN memorization is based on [Major system](https://en.wikipedia.org/wiki/Mnemonic_major_system)
+## Usage as a script
+
+memorable-password is available on PyPI -- `pip install memorable-password`
+
+## Web demo
+
+https://memorable-password.herokuapp.com
 
 <a href="https://imgur.com/9SKe4IU"><img src="https://i.imgur.com/9SKe4IU.png" title="source: imgur.com" /></a>
 <a href="https://imgur.com/arL46Hg"><img src="https://i.imgur.com/arL46Hg.png" title="source: imgur.com" /></a>
@@ -16,11 +22,7 @@ PIN memorization is based on [Major system](https://en.wikipedia.org/wiki/Mnemon
 
 ## Memorable Password on Android
 
-Memorable password has been tested to work with both PyDroid3 and QPython (Python 3.6).
-
-- PyDroid3 - Kivy - See `/pydroid_run.py`
-- QPython - Flask - See `/main.py`
-- CLI app - See `cli_app/app.py`
+Please see my new project: [Python Password Manager for Android]().
 
 ## Related Project
 
