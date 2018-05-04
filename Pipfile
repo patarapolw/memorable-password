@@ -8,7 +8,6 @@ nltk = "*"
 pyyaml = "*"
 markovify = "*"
 randomsentence = {git = "https://github.com/patarapolw/randomsentence.git", editable = true}
-password_manager = {git = "https://github.com/patarapolw/password_manager.git", editable = true}
 diceware_utils = {git = "https://github.com/patarapolw/diceware_utils.git", editable = true}
 gunicorn = "*"
 flask = "*"
