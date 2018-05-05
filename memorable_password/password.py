@@ -199,6 +199,12 @@ class GeneratePassword:
 
         return password, tagged_sentence
 
+    def get_policy(self):
+        return self.conformizer.get_policy()
+
+    def update_policy(self, policy_dict):
+        self.conformizer.update_policy(policy_dict)
+
 
 if __name__ == '__main__':
     import doctest

@@ -15,7 +15,7 @@ tests_require = ['pytest', 'passwordstrength', 'pronounceable'] \
 
 setup(
     name='memorable_password',  # Required
-    version='0.2.3',  # Required
+    version='0.3.0',  # Required
     description='Generate sentence of context, along with keywords/PIN/passwords '
                 'to make sure you memorize it!!!',  # Required
     long_description=long_description,  # Optional
